@@ -330,7 +330,7 @@ void WorkRecord::Clear()
     std::vector<int>().swap(nlpRequestType_);
     std::vector<uint32_t>().swap(tokenId_);
     std::vector<uint32_t>().swap(firstTokenId_);
-    std::vector<uint32_t>().swap(fixNumber_);
+    std::vector<int32_t>().swap(fixNumber_);
     num_ = 0;
 }
 
@@ -355,7 +355,7 @@ int WorkRecord::GetNlpRequestType(int index)
 int WorkRecord::GetFixNumber(int index)
 {
     std::unique_lock<std::mutex> lock(workRecordMutex_);
-    if (index >= 0 && index < num_) {
+    if (index >= 0 && index < num_ && index < fixNumber_.size()) {
         return fixNumber_[index];
     }
     return -1;
