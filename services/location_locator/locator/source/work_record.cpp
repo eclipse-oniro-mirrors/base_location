@@ -14,7 +14,7 @@
  */
 
 #include "work_record.h"
-
+#include "location_log.h"
 #include "string_ex.h"
 
 namespace OHOS {
@@ -214,6 +214,10 @@ bool WorkRecord::IsEmpty()
 
 bool WorkRecord::Add(const std::shared_ptr<Request>& request)
 {
+    if (request == nullptr || request->GetRequestConfig() == nullptr) {
+        LBSLOGE(LOCATOR, "Null request");
+        return false;
+    }
     std::unique_lock<std::mutex> lock(workRecordMutex_);
     uids_.push_back(request->GetUid());
     pids_.push_back(request->GetPid());
@@ -269,7 +273,7 @@ bool WorkRecord::Remove(int uid, int pid, std::string name, std::string uuid)
     nlpRequestType_.erase(nlpRequestType_.begin() + i);
     tokenId_.erase(tokenId_.begin() + i);
     firstTokenId_.erase(firstTokenId_.begin() + i);
-    fixNumber_.erase(firstTokenId_.begin() + i);
+    fixNumber_.erase(fixNumber_.begin() + i);
     num_--;
     return true;
 }
@@ -297,7 +301,7 @@ bool WorkRecord::Remove(std::string name)
     nlpRequestType_.erase(nlpRequestType_.begin() + i);
     tokenId_.erase(tokenId_.begin() + i);
     firstTokenId_.erase(firstTokenId_.begin() + i);
-    fixNumber_.erase(firstTokenId_.begin() + i);
+    fixNumber_.erase(fixNumber_.begin() + i);
     num_--;
     return true;
 }
