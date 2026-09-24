@@ -24,6 +24,7 @@
 #include "location_log.h"
 #include "locator_proxy.h"
 #include "request_config.h"
+#include "location_napi_errcode.h"
 
 namespace OHOS {
 namespace Location {
