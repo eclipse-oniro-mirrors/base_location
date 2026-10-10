@@ -195,19 +195,48 @@ struct LocationCustomDialog {
 @Entry
 @Component
 struct dialogPlusPage {
+  private isLocationPrivacyStateChanged : boolean = false
   dialogController: CustomDialogController = new CustomDialogController({
     builder: LocationCustomDialog({
-      cancel: this.onCancel,
-      accept: this.onAccept,
+      cancel: () => {
+        this.onCancel()
+      },
+      accept: () => {
+        this.onAccept();
+      }
     }),
-    cancel: this.existApp,
+    cancel: () => {
+      this.existApp;
+    },
     autoCancel: false,
     alignment: deviceInfo.deviceType === DEVICE_TYPE_CAR ? DialogAlignment.Center : DialogAlignment.Bottom,
     customStyle: false
   })
 
+  private pulishRejectEvent(): void {
+    let displayId = AppStorage.get<number>('screenId') as number || 0
+    const options: commonEventManager.CommonEventPublishData = {
+      code: 0,
+      data: userId.toString(),
+      isSticky: false,
+      parameters: { 'message': 'reject' }
+    }
+
+    commonEventManager.publish(LOCATION_PRIVACY_REJECT_EVENT, options, (err) => {
+      if (err) {
+        console.info(TAG, '[CommonEvent] PublishCallBack err=' + JSON.stringify(err));
+      } else {
+        console.info(TAG, '[CommonEvent] Publish success')
+      }
+    })
+  }
+
   aboutToAppear() {
     console.info(TAG, 'aboutToAppear execute LocationPrivacyDialog')
+    if (this.isLocationPrivacyStateChanged !== true) {
+      console.info(TAG, 'user did not click any button, pulish reject event')
+      pulishRejectEvent();
+    }
   }
 
   aboutToDisappear() {
@@ -241,21 +270,8 @@ struct dialogPlusPage {
 
   async onCancel() {
     console.info(TAG, 'Callback when the first button is clicked')
-    let userId = await dialogPlusPage.getForegroundOsAccountLocalId();
-    const options: commonEventManager.CommonEventPublishData = {
-      code: 0,
-      data: userId.toString(),
-      isSticky: false,
-      parameters: { 'message': 'reject' }
-    }
-
-    commonEventManager.publish(LOCATION_PRIVACY_REJECT_EVENT, options, (err) => {
-      if (err) {
-        console.info(TAG, '[CommonEvent] PublishCallBack err=' + JSON.stringify(err));
-      } else {
-        console.info(TAG, '[CommonEvent] Publish success')
-      }
-    })
+    this.isLocationPrivacyStateChanged = true
+    pulishRejectEvent();
 
     let session = AppStorage.get<UIExtensionContentSession>('ConfirmSession');
     if (session) {
@@ -265,6 +281,7 @@ struct dialogPlusPage {
 
   async onAccept() {
     console.info(TAG, 'Callback when the second button is clicked')
+    this.isLocationPrivacyStateChanged = true
     let userId = await dialogPlusPage.getForegroundOsAccountLocalId();
     const options: commonEventManager.CommonEventPublishData = {
       code: 0,
