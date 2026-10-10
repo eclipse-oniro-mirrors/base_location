@@ -23,6 +23,7 @@ import osAccount from '@ohos.account.osAccount';
 import deviceInfo from '@ohos.deviceInfo'
 
 let TAG = '[Location-Privacy]==>';
+const DEVICE_TYPE_CAR = 'car';
 const LOCATION_PRIVACY_ACCEPT_EVENT: string = 'usual.event.LOCATION_PRIVACY_ACCEPT';
 const LOCATION_PRIVACY_REJECT_EVENT: string = 'usual.event.LOCATION_PRIVACY_REJECT';
 const BODY_L = getNumberByResourceId(125830970, 16);
@@ -201,7 +202,7 @@ struct dialogPlusPage {
     }),
     cancel: this.existApp,
     autoCancel: false,
-    alignment: DialogAlignment.Bottom,
+    alignment: deviceInfo.deviceType === DEVICE_TYPE_CAR ? DialogAlignment.Center : DialogAlignment.Bottom,
     customStyle: false
   })
 
