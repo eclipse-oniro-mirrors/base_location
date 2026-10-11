@@ -213,7 +213,7 @@ struct dialogPlusPage {
     customStyle: false
   })
 
-  private async publishRejectEvent(): void {
+  private async publishRejectEvent() {
     let userId = await dialogPlusPage.getForegroundOsAccountLocalId();
     const options: commonEventManager.CommonEventPublishData = {
       code: 0,
