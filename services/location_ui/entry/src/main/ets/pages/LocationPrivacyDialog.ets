@@ -206,15 +206,15 @@ struct dialogPlusPage {
       }
     }),
     cancel: () => {
-      this.existApp;
+      this.existApp();
     },
     autoCancel: false,
     alignment: deviceInfo.deviceType === DEVICE_TYPE_CAR ? DialogAlignment.Center : DialogAlignment.Bottom,
     customStyle: false
   })
 
-  private pulishRejectEvent(): void {
-    let displayId = AppStorage.get<number>('screenId') as number || 0
+  private publishRejectEvent(): void {
+    let userId = await dialogPlusPage.getForegroundOsAccountLocalId();
     const options: commonEventManager.CommonEventPublishData = {
       code: 0,
       data: userId.toString(),
@@ -233,13 +233,13 @@ struct dialogPlusPage {
 
   aboutToAppear() {
     console.info(TAG, 'aboutToAppear execute LocationPrivacyDialog')
-    if (this.isLocationPrivacyStateChanged !== true) {
-      console.info(TAG, 'user did not click any button, pulish reject event')
-      pulishRejectEvent();
-    }
   }
 
   aboutToDisappear() {
+    if (this.isLocationPrivacyStateChanged !== true) {
+      console.info(TAG, 'user did not click any button, pulish reject event')
+      this.publishRejectEvent();
+    }
     let session = AppStorage.get<UIExtensionContentSession>('ConfirmSession');
     if (session) {
       session.terminateSelf();
@@ -271,7 +271,7 @@ struct dialogPlusPage {
   async onCancel() {
     console.info(TAG, 'Callback when the first button is clicked')
     this.isLocationPrivacyStateChanged = true
-    pulishRejectEvent();
+    this.publishRejectEvent();
 
     let session = AppStorage.get<UIExtensionContentSession>('ConfirmSession');
     if (session) {
