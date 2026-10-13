@@ -90,7 +90,8 @@
                 "netmanager_base",
                 "cJSON",
                 "json",
-                "taihe_ffi_gen"
+                "taihe_ffi_gen",
+                "node"
             ]
         },
         "build": {
