@@ -139,6 +139,7 @@ ohos_static_library("geolocation_static") {
     "hilog:libhilog",
     "ipc:ipc_single",
     "napi:ace_napi",
+    "node:node_header_notice",
     "window_manager:libwm",
   ]
 
@@ -185,6 +186,7 @@ ohos_shared_library("geolocationmanager") {
     "input:libmmi-client",
     "ipc:ipc_single",
     "napi:ace_napi",
+    "node:node_header_notice",
     "window_manager:libwm",
   ]
 
