@@ -307,6 +307,55 @@
             "attr":{
                 "priority":"translate"
             }
+        },
+        {
+            "name":"wifi_cdd_notify_title_orig",
+            "value":"Esta red Wi-Fi no tiene acceso a Internet. ¿Conectarse de todos modos?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_three_vap_notify_title_orig",
+            "value":"No se puede crear una zona Wi-Fi mientras el canal Wi-Fi está en uso. Si utilizas Wi-Fi Directo o la función de proyección de pantalla, desconéctate y vuelve a intentarlo.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_found_notify_title_orig",
+            "value":"Se requiere autenticación",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_target_statement_content_orig",
+            "value":"Los Servicios de localización requieren conexión a Internet y utilizan GNSS o información de red (Wi-Fi, red móvil, Bluetooth, IP) para proporcionarte servicios basados en la ubicación. Cuando esta opción esté habilitada, la información de ubicación del dispositivo se compartirá con los servicios a los que se les haya otorgado acceso a la ubicación. Los servicios del sistema también utilizarán la información de tu ubicación para actualizar tu zona horaria y hacer llamadas de emergencia. Para obtener más información sobre los Servicios de localización, consulta la <a>Declaración acerca de Servicios de localización y la privacidad</a>.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_connect_timeout_notify_title_orig",
+            "value":"La autenticación ha caducado",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_better_network_pop_up_title_orig",
+            "value":"Se ha encontrado una red Wi-Fi mejor",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_dialog_context_orig",
+            "value":"¿Permitir la conexión a una red mejor, “%s”, con la contraseña de la red Wi-Fi actual?",
+            "attr":{
+                "priority":"translate"
+            }
         }
     ]
 }

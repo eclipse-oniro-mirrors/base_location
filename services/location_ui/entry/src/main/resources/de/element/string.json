@@ -307,6 +307,55 @@
             "attr":{
                 "priority":"translate"
             }
+        },
+        {
+            "name":"wifi_cdd_notify_title_orig",
+            "value":"Dieses WLAN-Netzwerk hat keinen Internetzugriff. Trotzdem verbinden?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_three_vap_notify_title_orig",
+            "value":"Es kann kein Hotspot erstellt werden, solange der WLAN-Kanal verwendet wird. Wenn Sie Wi-Fi Direct oder Bildschirmübertragung verwenden, trennen Sie die Verbindung und versuchen Sie es erneut.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_found_notify_title_orig",
+            "value":"Authentifizierung erforderlich",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_target_statement_content_orig",
+            "value":"Standortservices benötigt eine Internetverbindung und nutzt GNSS- oder Netzwerkinformationen (WLAN, Mobilfunknetz, Bluetooth, IP), um Ihnen standortbasierte Services bereitzustellen. Wenn diese Option aktiviert ist, werden die Standortinformationen Ihres Geräts an Services weitergegeben, denen die Zugriffsberechtigung auf Ihren Standort erteilt wurde. Ihre Standortinformationen werden auch von Systemservices verwendet, z. B. zur Aktualisierung Ihrer Zeitzone und für Notrufe. Weitere Informationen zu Standortservices finden Sie in der <a>Erklärung zu Standortservices und Datenschutz</a>.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_connect_timeout_notify_title_orig",
+            "value":"Authentifizierung abgelaufen",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_better_network_pop_up_title_orig",
+            "value":"Besseres WLAN-Netzwerk gefunden",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_dialog_context_orig",
+            "value":"Verbindung mit einem besseren Netzwerk „%s“ mit dem Passwort des aktuellen WLAN-Netzwerks zulassen?",
+            "attr":{
+                "priority":"translate"
+            }
         }
     ]
 }

@@ -307,6 +307,55 @@
             "attr":{
                 "priority":"translate"
             }
+        },
+        {
+            "name":"wifi_cdd_notify_title_orig",
+            "value":"Ce réseau Wi-Fi n'a pas d'accès à Internet. S'y connecter malgré tout ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_three_vap_notify_title_orig",
+            "value":"Aucun point d'accès ne peut être créé lorsque le canal Wi-Fi est en cours d'utilisation. Si vous utilisez Wi-Fi Direct ou la diffusion d'écran, veuillez vous déconnecter et réessayez.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_found_notify_title_orig",
+            "value":"Authentification requise",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_target_statement_content_orig",
+            "value":"Les services de localisation nécessitent une connexion Internet et utilisent le GNSS ou des informations réseau (Wi-Fi, réseau cellulaire, Bluetooth, IP) pour vous fournir des services basés sur la localisation. Une fois activé, les informations de localisation de votre appareil sont partagées avec les services qui ont été accordés l'accès à la localisation. Vos informations de localisation seront également utilisées par les services système, à des fins telles que la mise à jour de votre fuseau horaire et les appels d'urgence. Pour en savoir plus sur les services de localisation, veuillez consulter la <a>Déclaration relative à la vie privée Services de localisation</a>.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_connect_timeout_notify_title_orig",
+            "value":"Authentification expirée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_better_network_pop_up_title_orig",
+            "value":"Un meilleur réseau Wi-Fi a été trouvé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_dialog_context_orig",
+            "value":"Autoriser la connexion à un meilleur réseau \"%s\" en utilisant le mot de passe du réseau Wi-Fi actuel ?",
+            "attr":{
+                "priority":"translate"
+            }
         }
     ]
 }

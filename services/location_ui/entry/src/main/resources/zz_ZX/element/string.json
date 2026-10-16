@@ -235,6 +235,34 @@
         {
             "name":"hotspot_sta_join_notify_title",
             "value":"[TS_1233711]_Personal hotspot"
+        },
+        {
+            "name":"wifi_cdd_notify_title_orig",
+            "value":"[TS_1262115]_This Wi-Fi network has no Internet access. Connect anyway?"
+        },
+        {
+            "name":"wifi_three_vap_notify_title_orig",
+            "value":"[TS_1262114]_Can't create a hotspot while the Wi-Fi channel is in use. If you're using Wi-Fi Direct or screen casting, disconnect and try again."
+        },
+        {
+            "name":"wifi_portal_found_notify_title_orig",
+            "value":"[TS_1262116]_Authentication required"
+        },
+        {
+            "name":"location_target_statement_content_orig",
+            "value":"[TS_1262119]_Location Services requires an Internet connection and uses GNSS or network information (Wi-Fi, cellular network, Bluetooth, IP) to provide you with location-based services. When this is enabled, your device's location information will be shared with services that have been granted location access. Your location information will also be used by system services, for purposes such as updating your time zone and emergency calls. For more information about Location Services, refer to the <a>Statement About Location Services and Privacy</a>."
+        },
+        {
+            "name":"wifi_portal_connect_timeout_notify_title_orig",
+            "value":"[TS_1262118]_Authentication expired"
+        },
+        {
+            "name":"wifipro_better_network_pop_up_title_orig",
+            "value":"[TS_1262120]_Found a better Wi-Fi network"
+        },
+        {
+            "name":"wifipro_auto_connect_dialog_context_orig",
+            "value":"[TS_1262117]_Allow connection to a better network \"%s\" using the password for the current Wi-Fi network?"
         }
     ]
 }

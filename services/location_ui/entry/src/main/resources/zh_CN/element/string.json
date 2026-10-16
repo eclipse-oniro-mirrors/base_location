@@ -64,7 +64,10 @@
         },
         {
             "name":"location_target_statement_content_orig",
-            "value":"“定位服务”联网并使用 GNSS 或网络信息 (WiFi、蜂窝网络、蓝牙、IP) 为您提供基于位置的服务。启用后，设备的位置信息会被分享给已授予定位权限的服务。您的位置信息也将用于系统服务，如更新时区、紧急呼叫等。关于定位服务的更多信息，请参阅<a>关于定位服务与隐私的声明</a>。"
+            "value":"“定位服务”联网并使用 GNSS 或网络信息 (Wi-Fi、蜂窝网络、蓝牙、IP) 为您提供基于位置的服务。启用后，设备的位置信息会被分享给已授予定位权限的服务。您的位置信息也将用于系统服务，如更新时区、紧急呼叫等。关于定位服务的更多信息，请参阅<a>关于定位服务与隐私的声明</a>。",
+            "attr":{
+                "priority":"translate"
+            }
         },
         {
             "name":"LocationPrivacyExtAbility_desc",
@@ -97,7 +100,10 @@
         },
         {
             "name":"wifi_portal_connect_timeout_notify_title_orig",
-            "value":"该 WiFi 网络认证已过期"
+            "value":"该 Wi-Fi 网络认证已过期",
+            "attr":{
+                "priority":"translate"
+            }
         },
         {
             "name":"wifi_portal_connect_timeout_notify_text",
@@ -115,7 +121,10 @@
         },
         {
             "name":"wifi_portal_found_notify_title_orig",
-            "value":"发现需认证的 WiFi 网络"
+            "value":"发现需认证的 Wi-Fi 网络",
+            "attr":{
+                "priority":"translate"
+            }
         },
         {
             "name":"wifi_portal_found_notify_text",
@@ -133,7 +142,10 @@
         },
         {
             "name":"wifi_cdd_notify_title_orig",
-            "value":"当前 WiFi 不可上网。是否继续使用此 WiFi？"
+            "value":"当前 Wi-Fi 不可上网。是否继续使用此 Wi-Fi？",
+            "attr":{
+                "priority":"translate"
+            }
         },
         {
             "name":"wifi_cdd_notify_no_button",
@@ -158,7 +170,10 @@
         },
         {
             "name":"wifi_three_vap_notify_title_orig",
-            "value":"检测到 WiFi 共享通道已被占用。若您正使用 WiFi 直连、多屏互动等互联应用，断开后才可开启个人热点。是否断开？"
+            "value":"检测到 Wi-Fi 共享通道已被占用。若您正使用 Wi-Fi 直连、多屏互动等互联应用，断开后才可开启个人热点。是否断开？",
+            "attr":{
+                "priority":"translate"
+            }
         },
         {
             "name":"wifi_three_vap_notify_no_button",
@@ -204,7 +219,10 @@
         },
         {
             "name":"wifipro_auto_connect_dialog_context_orig",
-            "value":"授权使用当前 WiFi 秘钥连接更优网络“%s”。"
+            "value":"授权使用当前 Wi-Fi 秘钥连接更优网络“%s”。",
+            "attr":{
+                "priority":"translate"
+            }
         },
         {
             "name":"wifipro_auto_connect_dialog_ok_button",
@@ -236,7 +254,10 @@
         },
         {
             "name":"wifipro_better_network_pop_up_title_orig",
-            "value":"发现更优 WiFi 网络"
+            "value":"发现更优 Wi-Fi 网络",
+            "attr":{
+                "priority":"translate"
+            }
         },
         {
             "name":"wifipro_better_network_notify_text",
@@ -254,7 +275,7 @@
         },
         {
             "name":"wifi_triband_network_notify_text",
-            "value":"优化网络体验",
+            "value":"可优化网络体验",
             "attr":{
                 "priority":"translate"
             }
@@ -403,6 +424,38 @@
             "name":"hotspot_sta_join_notify_title",
             "value":"个人热点",
             "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_airplane_welfare_notify_title",
+            "value":"新机限时礼赠：一年空中Wi-Fi",
+            "attr":{
+                "translatable":false,
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_airplane_welfare_notify_text",
+            "value":"购机专属礼赠，一年期东航空中Wi-Fi高速版0元到账，无需付费，限时领取，点击立即领取。",
+            "attr":{
+                "translatable":false,
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_airplane_welfare_notify_title_ext",
+            "value":"非凡礼赠：免费领极速Wi-Fi",
+            "attr":{
+                "translatable":false,
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_airplane_welfare_notify_text_ext",
+            "value":"非凡大师专属礼赠，一年期东航空中Wi-Fi极速版免费领取，万米高空网速拉满，点击领取。",
+            "attr":{
+                "translatable":false,
                 "priority":"translate"
             }
         }

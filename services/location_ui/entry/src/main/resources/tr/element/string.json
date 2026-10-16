@@ -239,6 +239,34 @@
             }
         },
         {
+            "name":"wifi_triband_network_notify_text",
+            "value":"Daha sorunsuz bir ağ bağlantısı deneyimi yaşayın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_triband_network_notify_ok_button",
+            "value":"Hemen bağlan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_triband_network_pop_up_title",
+            "value":"NearLink aracılığıyla bir yönlendiriciye bağlanın",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_notify_no_button",
+            "value":"Tekrar gösterme",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
             "name":"p2p_wsc_keypad_enter_pin_message",
             "value":"PIN'i girin:",
             "attr":{
@@ -276,6 +304,55 @@
         {
             "name":"wifipro_auto_connect_dialog_save_context",
             "value":"Mevcut Wi-Fi ağının şifresini kullanarak \"%s\" gibi daha iyi ağlara bağlanmaya izin verilsin mi?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_cdd_notify_title_orig",
+            "value":"Bu Wi-Fi ağında İnternet erişimi yok. Yine de bağlanılsın mı?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_three_vap_notify_title_orig",
+            "value":"Wi-Fi kanalı kullanımdayken ortak erişim noktası oluşturulamaz. Wi-Fi Direct veya ekran yayını kullanıyorsanız bağlantıyı kesin ve tekrar deneyin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_found_notify_title_orig",
+            "value":"Kimlik doğrulama gerekiyor",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_target_statement_content_orig",
+            "value":"Konum Servisleri İnternet bağlantısı gerektirir ve size konum tabanlı servisler sunmak için GNSS veya ağ bilgilerini (Wi-Fi, hücresel ağ, Bluetooth, IP) kullanır. Etkinleştirildiğinde cihazınızın konum bilgileri, konum erişimi verilen servislerle paylaşılacaktır. Konum bilgileriniz, saat diliminizi güncelleme ve acil durum aramaları gibi amaçlarla sistem servisleri tarafından da kullanılacaktır. Konum Servisleri hakkında daha fazla bilgi için <a>Konum Servisleri ve Gizlilik Hakkında Beyan</a> içeriğine bakın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_connect_timeout_notify_title_orig",
+            "value":"Kimlik doğrulama süresi sona erdi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_better_network_pop_up_title_orig",
+            "value":"Daha iyi bir Wi-Fi ağı bulundu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_dialog_context_orig",
+            "value":"Mevcut Wi-Fi ağının şifresini kullanarak daha iyi bir ağ \"%s\" bağlantısına izin verilsin mi?",
             "attr":{
                 "priority":"translate"
             }
