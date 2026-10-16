@@ -426,38 +426,6 @@
             "attr":{
                 "priority":"translate"
             }
-        },
-        {
-            "name":"wifi_airplane_welfare_notify_title",
-            "value":"新机限时礼赠：一年空中Wi-Fi",
-            "attr":{
-                "translatable":false,
-                "priority":"translate"
-            }
-        },
-        {
-            "name":"wifi_airplane_welfare_notify_text",
-            "value":"购机专属礼赠，一年期东航空中Wi-Fi高速版0元到账，无需付费，限时领取，点击立即领取。",
-            "attr":{
-                "translatable":false,
-                "priority":"translate"
-            }
-        },
-        {
-            "name":"wifi_airplane_welfare_notify_title_ext",
-            "value":"非凡礼赠：免费领极速Wi-Fi",
-            "attr":{
-                "translatable":false,
-                "priority":"translate"
-            }
-        },
-        {
-            "name":"wifi_airplane_welfare_notify_text_ext",
-            "value":"非凡大师专属礼赠，一年期东航空中Wi-Fi极速版免费领取，万米高空网速拉满，点击领取。",
-            "attr":{
-                "translatable":false,
-                "priority":"translate"
-            }
         }
     ]
 }
