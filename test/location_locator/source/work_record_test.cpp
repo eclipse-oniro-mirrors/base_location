@@ -92,6 +92,7 @@ HWTEST_F(WorkRecordTest, AddAndRemoveWorkRecord001, TestSize.Level0)
     parcel.WriteInt32(0); // locationRequestType
     parcel.WriteUint32(0); // tokenid
     parcel.WriteUint32(0); // first tokenid
+    parcel.WriteInt32(0); // fixNumber
     parcel.WriteString("deviceId"); // deviceId
     std::unique_ptr<WorkRecord> workrecord = WorkRecord::Unmarshalling(parcel);
     VerifyMarshalling(workrecord);

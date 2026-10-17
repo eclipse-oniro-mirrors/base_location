@@ -60,6 +60,7 @@ using namespace testing::ext;
 namespace OHOS {
 namespace Location {
 const int32_t LOCATION_PERM_NUM = 6;
+const int32_t LOCATION_ACLPERM_NUM = 2;
 const int INVALID_PRIVACY_TYPE = -1;
 const int32_t DEFAULT_USER = 100;
 #ifdef FEATURE_GNSS_SUPPORT
@@ -107,13 +108,16 @@ void LocatorImplTest::MockNativePermission()
         ACCESS_BACKGROUND_LOCATION.c_str(), MANAGE_SECURE_SETTINGS.c_str(),
         ACCESS_CONTROL_LOCATION_SWITCH.c_str(), ACCESS_LOCATION_SWITCH_IGNORED.c_str(),
     };
+    const char *aclPerms[] = {
+        ACCESS_CONTROL_LOCATION_SWITCH.c_str(), ACCESS_LOCATION_SWITCH_IGNORED.c_str(),
+    };
     NativeTokenInfoParams infoInstance = {
         .dcapsNum = 0,
         .permsNum = LOCATION_PERM_NUM,
         .aclsNum = 0,
-        .dcaps = nullptr,
+        .dcaps = LOCATION_ACLPERM_NUM,
         .perms = perms,
-        .acls = nullptr,
+        .acls = aclPerms,
         .processName = "LocatorImplTest",
         .aplStr = "system_basic",
     };
