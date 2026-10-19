@@ -114,8 +114,8 @@ void LocatorImplTest::MockNativePermission()
     NativeTokenInfoParams infoInstance = {
         .dcapsNum = 0,
         .permsNum = LOCATION_PERM_NUM,
-        .aclsNum = 0,
-        .dcaps = LOCATION_ACLPERM_NUM,
+        .aclsNum = LOCATION_ACLPERM_NUM,
+        .dcaps = nullptr,
         .perms = perms,
         .acls = aclPerms,
         .processName = "LocatorImplTest",
