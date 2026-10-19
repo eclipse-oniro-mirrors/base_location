@@ -53,6 +53,7 @@ ohos_shared_library("fenceextensionability_napi") {
   external_deps = [
     "hilog:libhilog",
     "napi:ace_napi",
+    "node:node_header_notice",
   ]
 
   relative_install_dir = "module/app/ability"
