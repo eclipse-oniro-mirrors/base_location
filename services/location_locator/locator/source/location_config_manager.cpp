@@ -21,6 +21,7 @@
 #include "location_log.h"
 
 #include "parameter.h"
+#include "parameters.h"
 #include "location_data_rdb_manager.h"
 #include "ipc_skeleton.h"
 #include "nlohmann/json.hpp"
@@ -340,6 +341,8 @@ std::string LocationConfigManager::GenerateStartCommand()
     nlohmann::json param;
     std::string uiType = "sysDialog/common";
     param["ability.want.params.uiExtensionType"] = uiType;
+    bool isOverSea = OHOS::system::GetBoolParameter("const.cust.is_oversea", false);
+    param["isOverSea"] = isOverSea;
     std::string cmdData = param.dump();
     LBSLOGD(GNSS, "cmdData is: %{public}s.", cmdData.c_str());
     return cmdData;

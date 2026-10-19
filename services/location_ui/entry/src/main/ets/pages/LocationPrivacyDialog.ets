@@ -128,7 +128,9 @@ struct LocationCustomDialog {
   private getStatementContent(): Array<string> {
     let result: Array<string> = ['', '', ''];
     try {
-      let text = this.context.resourceManager.getStringByNameSync("location_target_statement_content");
+      let isOverSea: boolean = (AppStorage.get('isOverSea') as boolean) ?? false;
+      let text = this.context.resourceManager.getStringByNameSync(isOverSea ?
+        'location_target_statement_content_orig' : 'location_target_statement_content');
       let beginIndex = text.indexOf(FLAG_BEGIN);
       if (beginIndex !== 0 && beginIndex !== -1) {
         result[0] = text.substr(0, beginIndex);

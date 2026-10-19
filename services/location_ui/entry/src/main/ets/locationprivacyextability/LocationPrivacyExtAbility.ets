@@ -31,6 +31,11 @@ export default class LocationPrivacyExtAbility extends UIExtensionAbility {
         if (want.parameters.message) {
             AppStorage.setOrCreate('message', want.parameters.message);
         }
+        if (want.parameters.isOverSea != undefined) {
+            AppStorage.setOrCreate('isOverSea', want.parameters.isOverSea);
+        } else {
+            AppStorage.setOrCreate('isOverSea', false);
+        }
 
         let param: Record<string, UIExtensionContentSession> = {
             'session': session
