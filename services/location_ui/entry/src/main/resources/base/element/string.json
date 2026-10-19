@@ -434,38 +434,6 @@
             "attr":{
                 "priority":"translate"
             }
-        },
-        {
-            "name":"wifi_airplane_welfare_notify_title",
-            "value":"Limited-Time Gift: Free 1-Year In-Flight Wi-Fi",
-            "attr":{
-                "translatable":false,
-                "priority":"translate"
-            }
-        },
-        {
-            "name":"wifi_airplane_welfare_notify_text",
-            "value":"Exclusive Smartphone Purchase Gift: Enjoy a complimentary 1-year subscription to China Eastern Airlines In-flight Wi-Fi (High-Speed Version). Free for a limited time. Click to claim now.",
-            "attr":{
-                "translatable":false,
-                "priority":"translate"
-            }
-        },
-        {
-            "name":"wifi_airplane_welfare_notify_title_ext",
-            "value":"Ultimate Gift: Claim Your Free Ultra-Speed Wi-Fi",
-            "attr":{
-                "translatable":false,
-                "priority":"translate"
-            }
-        },
-        {
-            "name":"wifi_airplane_welfare_notify_text_ext",
-            "value":"An exclusive gift for Ultimate Design owners: Enjoy a complimentary 1-year subscription to China Eastern's Ultra-Speed In-flight Wi-Fi. Experience peak internet performance at 30,000 feet. Click to redeem.",
-            "attr":{
-                "translatable":false,
-                "priority":"translate"
-            }
         }
     ]
 }
