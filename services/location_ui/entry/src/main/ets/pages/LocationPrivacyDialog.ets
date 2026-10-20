@@ -130,7 +130,6 @@ struct LocationCustomDialog {
     let result: Array<string> = ['', '', ''];
     try {
       let isOverSea: boolean = systemParameterEnhance.getSync('const.cust.is_oversea', 'false') === 'true';
-      console.info(TAG, `isOverSea param value: ${systemParameterEnhance.getSync('const.cust.is_oversea', 'false')}, isOverSea: ${isOverSea}`);
       let text = this.context.resourceManager.getStringByNameSync(isOverSea ?
         'location_target_statement_content_orig' : 'location_target_statement_content');
       let beginIndex = text.indexOf(FLAG_BEGIN);
