@@ -67,8 +67,7 @@ export default class WifiServiceAbility extends ServiceExtensionAbility {
             let status : number = want.parameters?.['status'] as number;
             let ssid : string = want.parameters?.['ssid'] as string;
             let backPortalConnect : boolean = want.parameters?.['backPortalConnect'] as boolean;
-            let networkId : number = -1;
-            networkId = want.parameters?.['networkId'] as number;
+            let networkid : number = want.parameters?.['networkid'] as number;
             this.isOverSea = systemParameterEnhance.getSync('const.cust.is_oversea', 'false') === 'true';
             try {
                 file = fs.openSync('/system/etc/wifi/portal_notification.png', fs.OpenMode.READ_ONLY);
