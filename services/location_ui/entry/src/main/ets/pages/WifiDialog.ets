@@ -15,6 +15,7 @@
 
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
 import commonEventManager from '@ohos.commonEventManager';
+import systemParameterEnhance from '@ohos.systemParameterEnhance';
 import resourceManager from '@ohos.resourceManager';
 
 let TAG = '[WIFI-NI:WifiDialog]==>';
@@ -47,7 +48,7 @@ struct dialogPlusPage {
       let type : number = AppStorage.get('wifiDialogType') as number
       this.clearNoActionTimer()
       try {
-        let isOverSea: boolean = (AppStorage.get('isOverSea') as boolean) ?? false;
+        let isOverSea: boolean = systemParameterEnhance.getSync('const.cust.is_oversea', 'false') === 'true';
         switch (type) {
           case this.WIFI_DIALOG_CDD:
               this.title = this.getDialogResourceString(isOverSea ?

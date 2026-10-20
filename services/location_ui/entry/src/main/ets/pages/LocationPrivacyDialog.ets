@@ -15,6 +15,7 @@
 
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
 import commonEventManager from '@ohos.commonEventManager';
+import systemParameterEnhance from '@ohos.systemParameterEnhance';
 import common from '@ohos.app.ability.common';
 import router from '@ohos.router';
 import resourceManager from '@ohos.resourceManager';
@@ -128,7 +129,8 @@ struct LocationCustomDialog {
   private getStatementContent(): Array<string> {
     let result: Array<string> = ['', '', ''];
     try {
-      let isOverSea: boolean = (AppStorage.get('isOverSea') as boolean) ?? false;
+      let isOverSea: boolean = systemParameterEnhance.getSync('const.cust.is_oversea', 'false') === 'true';
+      console.info(TAG, `isOverSea param value: ${systemParameterEnhance.getSync('const.cust.is_oversea', 'false')}, isOverSea: ${isOverSea}`);
       let text = this.context.resourceManager.getStringByNameSync(isOverSea ?
         'location_target_statement_content_orig' : 'location_target_statement_content');
       let beginIndex = text.indexOf(FLAG_BEGIN);
