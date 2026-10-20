@@ -21,7 +21,6 @@
 #include "location_log.h"
 
 #include "parameter.h"
-#include "parameters.h"
 #include "location_data_rdb_manager.h"
 #include "ipc_skeleton.h"
 #include "nlohmann/json.hpp"
