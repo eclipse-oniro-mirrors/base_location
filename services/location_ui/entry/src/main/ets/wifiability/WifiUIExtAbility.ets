@@ -40,7 +40,6 @@ export default class WifiUIExtAbility extends UIExtensionAbility {
         AppStorage.setOrCreate('targetSsid', want.parameters?.['targetSsid']);
         AppStorage.setOrCreate('dialogTimeout', want.parameters?.['dialogTimeout']);
         AppStorage.setOrCreate('untrustDuration', want.parameters?.['untrustDuration']);
-        AppStorage.setOrCreate('isOverSea', want.parameters?.['isOverSea']);
 
         let param: Record<string, UIExtensionContentSession> = {
             'session': session
