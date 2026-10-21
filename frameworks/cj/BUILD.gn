@@ -62,6 +62,7 @@ ohos_shared_library("cj_geolocationmanager_ffi") {
     "napi:ace_napi",
     "napi:cj_bind_ffi",
     "napi:cj_bind_native",
+    "node:node_header_notice",
   ]
 
   version_script = "libcj_geolocationmanager_ffi.map"
