@@ -239,6 +239,34 @@
             }
         },
         {
+            "name":"wifi_triband_network_notify_text",
+            "value":"ພົບກັບການເຊື່ອມຕໍ່ເຄືອຂ່າຍທີ່ລ່ຽນໄຫຼຍິ່ງຂຶ້ນ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_triband_network_notify_ok_button",
+            "value":"ເຊື່ອມຕໍ່ດຽວນີ້",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_triband_network_pop_up_title",
+            "value":"ເຊື່ອມຕໍ່ກັບເຣົາເຕີ້ຜ່ານ NearLink",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_notify_no_button",
+            "value":"ຢ່າສະແດງອີກຄັ້ງ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
             "name":"p2p_wsc_keypad_enter_pin_message",
             "value":"ປ້ອນ PIN ເຂົ້າ:",
             "attr":{
@@ -276,6 +304,55 @@
         {
             "name":"wifipro_auto_connect_dialog_save_context",
             "value":"ອະນຸຍາດການເຊື່ອມຕໍ່ກັບເຄືອຂ່າຍທີ່ດີກວ່າ ເຊັ່ນ: \"%s\" ໂດຍໃຊ້ລະຫັດຜ່ານສຳລັບເຄືອຂ່າຍ Wi-Fi ປະຈຸບັນບໍ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_cdd_notify_title_orig",
+            "value":"ເຄືອຂ່າຍ Wi-Fi ນີ້ບໍ່ມີການເຂົ້າເຖິງອິນເຕີເນັດ. ແນວໃດກໍເຊື່ອມຕໍ່ບໍ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_three_vap_notify_title_orig",
+            "value":"ບໍ່ສາມາດສ້າງຮັອດສະປອດໃນຂະນະຊ່ອງ Wi-Fi ຖືກໃຊ້ງານຢູ່. ຖ້າທ່ານກຳລັງໃຊ້ Wi-Fi Direct ຫຼື ການອອກອາກາດໜ້າຈໍ, ຕັດການເຊື່ອມຕໍ່ ແລະ ລອງໃໝ່ອີກ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_found_notify_title_orig",
+            "value":"ຈຳເປັນຕ້ອງມີການຮັບຮອງຄວາມຖືກຕ້ອງ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_target_statement_content_orig",
+            "value":"ການບໍລິການທີ່ຕັ້ງຈຳເປັນຕ້ອງມີການເຊື່ອມຕໍ່ອິນເຕີເນັດ ແລະ ໃຊ້ GNSS ຫຼື ຂໍ້ມູນເຄືອຂ່າຍ (Wi-Fi, ເຄືອຂ່າຍເຊລລູລາ, Bluetooth, IP) ເພື່ອໃຫ້ການບໍລິການອີງຕາມທີ່ຕັ້ງແກ່ທ່ານ. ເມື່ອເປີດໃຊ້ງານສິ່ງນີ້, ຂໍ້ມູນທີ່ຕັ້ງຂອງອຸປະກອນຂອງທ່ານຈະຖືກແຊຣ໌ກັບການບໍລິການທີ່ໄດ້ຮັບການເຂົ້າເຖິງທີ່ຕັ້ງແລ້ວ. ນອກນັ້ນ ການບໍລິການລະບົບຍັງຈະໃຊ້ຂໍ້ມູນທີ່ຕັ້ງຂອງທ່ານ, ເພື່ອຈຸດປະສົງຕ່າງໆ ເຊັ່ນ: ການອັບເດດເຂດເວລາ ແລະ ການໂທສຸກເສີນຂອງທ່ານ. ສຳລັບຂໍ້ມູນເພີ່ມເຕີມກ່ຽວກັບການບໍລິການທີ່ຕັ້ງ, ເບິ່ງ <a>ຄຳຖະແຫຼງກ່ຽວກັບການບໍລິການທີ່ຕັ້ງ ແລະ ຄວາມເປັນສ່ວນຕົວ</a>.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_connect_timeout_notify_title_orig",
+            "value":"ການຮັບຮອງຄວາມຖືກຕ້ອງໝົດອາຍຸແລ້ວ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_better_network_pop_up_title_orig",
+            "value":"ພົບເຄືອຂ່າຍ Wi-Fi ທີ່ດີກວ່າ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_dialog_context_orig",
+            "value":"ອະນຸຍາດການເຊື່ອມຕໍ່ກັບເຄືອຂ່າຍທີ່ດີກວ່າ \"%s\" ໂດຍໃຊ້ລະຫັດຜ່ານສຳລັບເຄືອຂ່າຍ Wi-Fi ປະຈຸບັນບໍ?",
             "attr":{
                 "priority":"translate"
             }

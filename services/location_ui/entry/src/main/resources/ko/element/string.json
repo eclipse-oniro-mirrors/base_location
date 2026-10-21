@@ -307,6 +307,55 @@
             "attr":{
                 "priority":"translate"
             }
+        },
+        {
+            "name":"wifi_cdd_notify_title_orig",
+            "value":"이 Wi-Fi 네트워크는 인터넷 액세스가 지원되지 않습니다. 그래도 연결할까요?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_three_vap_notify_title_orig",
+            "value":"Wi-Fi 채널이 사용 중일 때는 핫스팟을 만들 수 없습니다. Wi-Fi Direct 또는 화면 캐스팅을 사용 중인 경우 연결을 해제하고 다시 시도하세요.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_found_notify_title_orig",
+            "value":"인증 필요",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_target_statement_content_orig",
+            "value":"위치 서비스는 인터넷 연결이 필요하며 GNSS 또는 네트워크 정보(Wi-Fi, 셀룰러 네트워크, 블루투스, IP)를 사용하여 위치 기반 서비스를 제공합니다. 이 기능을 실행하면 장치의 위치 정보가 위치 액세스 권한이 부여된 서비스와 공유됩니다. 사용자의 위치 정보는 표준시간대 업데이트, 긴급 전화와 같은 목적으로 시스템 서비스에서도 사용됩니다. 위치 서비스에 대한 자세한 내용은 <a>위치 서비스 및 개인 정보 보호에 대한 방침</a>을 참조하세요.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_connect_timeout_notify_title_orig",
+            "value":"인증 만료",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_better_network_pop_up_title_orig",
+            "value":"더 우수한 Wi-Fi 네트워크를 찾았습니다",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_dialog_context_orig",
+            "value":"현재 Wi-Fi 네트워크의 암호를 사용하여 더 우수한 네트워크 \"%s\"에 연결하도록 허용할까요?",
+            "attr":{
+                "priority":"translate"
+            }
         }
     ]
 }

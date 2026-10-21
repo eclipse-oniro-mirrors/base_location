@@ -239,6 +239,34 @@
             }
         },
         {
+            "name":"wifi_triband_network_notify_text",
+            "value":"ပိုမိုချောမွေ့သော ကွန်ရက် ချိတ်ဆက်မှုကို သုံးစွဲနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_triband_network_notify_ok_button",
+            "value":"ယခု ချိတ်ဆက်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_triband_network_pop_up_title",
+            "value":"NearLink မှတစ်ဆင့် ရောက်တာနှင့် ချိတ်ဆက်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_notify_no_button",
+            "value":"ထပ်မပြပါနှင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
             "name":"p2p_wsc_keypad_enter_pin_message",
             "value":"PIN ရိုက်ထည့်ပါ-",
             "attr":{
@@ -276,6 +304,55 @@
         {
             "name":"wifipro_auto_connect_dialog_save_context",
             "value":"လက်ရှိ Wi-Fi ကွန်ရက်အတွက် စကားဝှက်ကို အသုံးပြု၍ \"%s\" ကဲ့သို့ ပိုကောင်းသော ကွန်ရက်များနှင့် ချိတ်ဆက်မှုကို ခွင့်ပြုမည်လား။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_cdd_notify_title_orig",
+            "value":"ဤ Wi-Fi ကွန်ရက်တွင် အင်တာနက် သုံးစွဲခွင့် မရှိပါ။ မည်သို့ပင်ဖြစ်စေ ချိတ်ဆက်မည်လား။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_three_vap_notify_title_orig",
+            "value":"Wi-Fi ချန်နယ်ကို သုံးနေစဉ်တွင် ဟော့စပေါ့ ဖန်တီး၍ မရနိုင်ပါ။ Wi-Fi Direct သို့မဟုတ် စက်မျက်နှာပြင် ထုတ်လွှင့်ပြသမှုကို သုံးနေပါက ချိတ်ဆက်မှုဖြုတ်ပြီး ထပ်ကြိုးစားကြည့်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_found_notify_title_orig",
+            "value":"စစ်မှန်ကြောင်း အတည်ပြုမှု လိုအပ်ပါသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_target_statement_content_orig",
+            "value":"တည်နေရာ ဝန်ဆောင်မှုများသည် သင့်ကို တည်နေရာအခြေပြု ဝန်ဆောင်များ ပံ့ပိုးပေးရန်အတွက် အင်တာနက် ချိတ်ဆက်မှု လိုအပ်ပြီး GNSS သို့မဟုတ် ကွန်ရက် အချက်အလက် (Wi-Fi ၊ ဆယ်လူလာ ကွန်ရက်၊ ဘလူးတုသ်၊ IP) ကို သုံးပါသည်။ ဖွင့်ထားသည့်အခါ သင့်စက်၏ တည်နေရာ အချက်အလက်ကို တည်နေရာ ဝင်ရောက်သုံးစွဲခွင့် ပေးအပ်ထားသော ဝန်ဆောင်မှုများနှင့် ဝေမျှပါမည်။ သင့်ဒေသစံတော်ချိန်ကို အပ်ဒိတ်လုပ်ခြင်းနှင့် အရေးပေါ် ခေါ်ဆိုမှုများ ပြုလုပ်ခြင်း စသည့် ရည်ရွယ်ချက်များအတွက် သင့်တည်နေရာ အချက်အလက်ကို စနစ် ဝန်ဆောင်မှုများကလည်း အသုံးပြုပါမည်။ တည်နေရာ ဝန်ဆောင်မှုများအကြောင်း နောက်ထပ်အချက်အလက်များ သိရှိလိုပါက <a>တည်နေရာ ဝန်ဆောင်မှုများနှင့် ကိုယ်ရေးအချက်အလက် လုံခြုံရေးအကြောင်း ထုတ်ပြန်ချက်</a>ကို ကိုးကားပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_connect_timeout_notify_title_orig",
+            "value":"စစ်မှန်ကြောင်း အတည်ပြုမှု သက်တမ်းကုန်သွားပါပြီ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_better_network_pop_up_title_orig",
+            "value":"ပိုမိုကောင်းမွန်သော Wi-Fi ကွန်ရက်ကို ရှာတွေ့ထားပါသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_dialog_context_orig",
+            "value":"လက်ရှိ Wi-Fi ကွန်ရက်အတွက် စကားဝှက်ကို အသုံးပြု၍ ပိုမိုကောင်းမွန်သည့် ကွန်ရက် \"%s\" နှင့် ချိတ်ဆက်မှုကို ခွင့်ပြုမည်လား။",
             "attr":{
                 "priority":"translate"
             }

@@ -239,6 +239,34 @@
             }
         },
         {
+            "name":"wifi_triband_network_notify_text",
+            "value":"Rasakan koneksi jaringan yang lebih halus.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_triband_network_notify_ok_button",
+            "value":"Hubungkan sekarang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_triband_network_pop_up_title",
+            "value":"Hubungkan ke router melalui NearLink",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_notify_no_button",
+            "value":"Jangan tampilkan lagi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
             "name":"p2p_wsc_keypad_enter_pin_message",
             "value":"Masukkan PIN:",
             "attr":{
@@ -276,6 +304,55 @@
         {
             "name":"wifipro_auto_connect_dialog_save_context",
             "value":"Izinkan koneksi ke jaringan yang lebih baik, seperti \"%s\", menggunakan kata sandi untuk jaringan Wi-Fi saat ini?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_cdd_notify_title_orig",
+            "value":"Jaringan Wi-Fi ini tidak memiliki akses Internet. Tetap hubungkan?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_three_vap_notify_title_orig",
+            "value":"Tidak dapat membuat hotspot saat saluran Wi-Fi sedang digunakan. Jika Anda menggunakan Wi-Fi Direct atau penyiaran layar, putuskan koneksinya dan coba lagi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_found_notify_title_orig",
+            "value":"Autentikasi diperlukan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_target_statement_content_orig",
+            "value":"Layanan Lokasi membutuhkan koneksi Internet serta menggunakan GNSS atau informasi jaringan (Wi-Fi, jaringan seluler, Bluetooth, IP) untuk menyediakan layanan berbasis lokasi bagi Anda. Ketika ini diaktifkan, informasi lokasi perangkat Anda akan dibagikan dengan layanan yang telah diberi akses lokasi. Informasi lokasi Anda juga akan digunakan oleh layanan sistem, untuk tujuan misalnya memperbarui zona waktu dan panggilan darurat. Untuk informasi lainnya tentang Layanan Lokasi, lihat <a>Pernyataan Tentang Layanan Lokasi dan Privasi</a>.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_connect_timeout_notify_title_orig",
+            "value":"Autentikasi kedaluwarsa",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_better_network_pop_up_title_orig",
+            "value":"Ditemukan jaringan Wi-Fi yang lebih baik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_dialog_context_orig",
+            "value":"Izinkan koneksi ke jaringan yang lebih baik \"%s\" menggunakan kata sandi untuk jaringan Wi-Fi saat ini?",
             "attr":{
                 "priority":"translate"
             }

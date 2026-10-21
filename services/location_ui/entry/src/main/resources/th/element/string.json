@@ -239,6 +239,34 @@
             }
         },
         {
+            "name":"wifi_triband_network_notify_text",
+            "value":"สัมผัสประสบการณ์การเชื่อมต่อเครือข่ายที่ราบรื่นยิ่งขึ้น",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_triband_network_notify_ok_button",
+            "value":"เชื่อมต่อเลย",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_triband_network_pop_up_title",
+            "value":"เชื่อมต่อกับเราเตอร์ผ่าน NearLink",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_notify_no_button",
+            "value":"ไม่ต้องแสดงอีก",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
             "name":"p2p_wsc_keypad_enter_pin_message",
             "value":"กรอก PIN:",
             "attr":{
@@ -276,6 +304,55 @@
         {
             "name":"wifipro_auto_connect_dialog_save_context",
             "value":"อนุญาตให้เชื่อมต่อกับเครือข่ายที่ดีกว่า เช่น \"%s\" โดยใช้รหัสผ่านสำหรับเครือข่าย Wi-Fi ปัจจุบันหรือไม่",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_cdd_notify_title_orig",
+            "value":"เครือข่าย Wi-Fi นี้ไม่มีการเข้าถึงอินเทอร์เน็ต ยืนยันที่จะเชื่อมต่อหรือไม่",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_three_vap_notify_title_orig",
+            "value":"ไม่สามารถสร้างฮอตสปอตได้ในขณะใช้งานช่อง Wi-Fi อยู่ หากคุณกำลังใช้ Wi-Fi Direct หรือการแคสต์หน้าจอ ให้ยกเลิกการเชื่อมต่อและลองอีกครั้ง",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_found_notify_title_orig",
+            "value":"ต้องมีการรับรองความถูกต้อง",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_target_statement_content_orig",
+            "value":"บริการระบุตำแหน่งต้องใช้การเชื่อมต่ออินเทอร์เน็ตและใช้ GNSS หรือข้อมูลเครือข่าย (Wi-Fi, เครือข่ายมือถือ, บลูทูธ, IP) เพื่อให้บริการตามตำแหน่งแก่คุณ เมื่อเปิดใช้งานบริการนี้ ข้อมูลตำแหน่งของอุปกรณ์ของคุณจะถูกแชร์กับบริการที่ได้รับอนุญาตให้เข้าถึงตําแหน่ง ข้อมูลตำแหน่งของคุณจะถูกนำไปใช้โดยบริการของระบบด้วยเช่นกันสำหรับวัตถุประสงค์ต่าง ๆ เช่น การอัปเดตโซนเวลาและการโทรฉุกเฉินของคุณ สำหรับข้อมูลเพิ่มเติมเกี่ยวกับบริการระบุตำแหน่ง โปรดดูที่ <a>คำชี้แจงเกี่ยวกับบริการระบุตำแหน่ง และความเป็นส่วนตัว</a>",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_connect_timeout_notify_title_orig",
+            "value":"การรับรองความถูกต้องหมดอายุแล้ว",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_better_network_pop_up_title_orig",
+            "value":"พบเครือข่าย Wi-Fi ที่ดีกว่า",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_dialog_context_orig",
+            "value":"อนุญาตให้เชื่อมต่อกับเครือข่ายที่ดีกว่า \"%s\" โดยใช้รหัสผ่านสำหรับเครือข่าย Wi-Fi ปัจจุบันหรือไม่",
             "attr":{
                 "priority":"translate"
             }

@@ -307,6 +307,55 @@
             "attr":{
                 "priority":"translate"
             }
+        },
+        {
+            "name":"wifi_cdd_notify_title_orig",
+            "value":"このWi-Fiネットワークには、インターネット接続がありません。接続しますか？",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_three_vap_notify_title_orig",
+            "value":"Wi-Fiチャネルが使用中の間は、ホットスポットを作成できません。Wi-Fi Directまたは画面投影を使用している場合、切断してから再試行してください。",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_found_notify_title_orig",
+            "value":"認証が必要",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_target_statement_content_orig",
+            "value":"位置情報サービスは、位置情報に基づくサービスを提供するために、インターネット接続を必要とし、GNSSまたはネットワーク情報（Wi-Fi、セルラーネットワーク、Bluetooth、IP）を使用します。これを有効にすると、デバイスの位置情報は、位置情報へのアクセス権が付与されているサービスと共有されます。また、位置情報はタイムゾーンの更新や緊急通報などの目的でシステムサービスによって使用されます。位置情報サービスの詳細については、<a>位置情報サービスと個人情報保護に関する声明</a>を参照してください。",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_connect_timeout_notify_title_orig",
+            "value":"認証が有効期限切れ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_better_network_pop_up_title_orig",
+            "value":"より良いWi-Fiネットワークを発見しました",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_dialog_context_orig",
+            "value":"現在のWi-Fiネットワークのパスワードを使用して、より良いネットワーク「%s」に接続することを許可しますか？",
+            "attr":{
+                "priority":"translate"
+            }
         }
     ]
 }

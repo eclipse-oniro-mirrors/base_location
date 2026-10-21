@@ -76,7 +76,10 @@
         },
         {
             "name":"location_target_statement_content_orig",
-            "value":"Location Services requires an Internet connection and uses GNSS or network information (WiFi, cellular network, Bluetooth, IP) to provide you with location-based services. When this is enabled, your device's location information will be shared with services that have been granted location access. Your location information will also be used by system services, for purposes such as updating your time zone and emergency calls. For more information about Location Services, refer to the <a>Statement About Location Services and Privacy</a>."
+            "value":"Location Services requires an Internet connection and uses GNSS or network information (Wi-Fi, cellular network, Bluetooth, IP) to provide you with location-based services. When this is enabled, your device's location information will be shared with services that have been granted location access. Your location information will also be used by system services, for purposes such as updating your time zone and emergency calls. For more information about Location Services, refer to the <a>Statement About Location Services and Privacy</a>.",
+            "attr":{
+                "priority":"translate"
+            }
         },
         {
             "name":"LocationPrivacyExtAbility_label",
@@ -105,7 +108,10 @@
         },
         {
             "name":"wifi_portal_connect_timeout_notify_title_orig",
-            "value":"Authentication expired"
+            "value":"Authentication expired",
+            "attr":{
+                "priority":"translate"
+            }
         },
         {
             "name":"wifi_portal_connect_timeout_notify_text",
@@ -123,7 +129,10 @@
         },
         {
             "name":"wifi_portal_found_notify_title_orig",
-            "value":"Authentication required"
+            "value":"Authentication required",
+            "attr":{
+                "priority":"translate"
+            }
         },
         {
             "name":"wifi_portal_found_notify_text",
@@ -141,7 +150,10 @@
         },
         {
             "name":"wifi_cdd_notify_title_orig",
-            "value":"This WiFi network has no Internet access. Connect anyway?"
+            "value":"This Wi-Fi network has no Internet access. Connect anyway?",
+            "attr":{
+                "priority":"translate"
+            }
         },
         {
             "name":"wifi_cdd_notify_no_button",
@@ -166,7 +178,10 @@
         },
         {
             "name":"wifi_three_vap_notify_title_orig",
-            "value":"Can't create a hotspot while the WiFi channel is in use. If you're using WLAN Direct or screen casting, disconnect and try again."
+            "value":"Can't create a hotspot while the Wi-Fi channel is in use. If you're using Wi-Fi Direct or screen casting, disconnect and try again.",
+            "attr":{
+                "priority":"translate"
+            }
         },
         {
             "name":"wifi_three_vap_notify_no_button",
@@ -212,11 +227,21 @@
         },
         {
             "name":"wifipro_auto_connect_dialog_context_orig",
-            "value":"Allow connection to a better network \"%s\" using the password for the current WiFi network?"
+            "value":"Allow connection to a better network \"%s\" using the password for the current Wi-Fi network?",
+            "attr":{
+                "priority":"translate"
+            }
         },
         {
             "name":"wifipro_auto_connect_dialog_ok_button",
             "value":"Allow",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_dialog_no_button",
+            "value":"Deny",
             "attr":{
                 "priority":"LT"
             }
@@ -229,13 +254,6 @@
             }
         },
         {
-            "name":"wifipro_auto_connect_dialog_no_button",
-            "value":"Deny",
-            "attr":{
-                "priority":"LT"
-            }
-        },
-        {
             "name":"wifipro_better_network_pop_up_title",
             "value":"Found a better WLAN network",
             "attr":{
@@ -244,7 +262,10 @@
         },
         {
             "name":"wifipro_better_network_pop_up_title_orig",
-            "value":"Found a better WiFi network"
+            "value":"Found a better Wi-Fi network",
+            "attr":{
+                "priority":"translate"
+            }
         },
         {
             "name":"wifipro_better_network_notify_text",
@@ -255,19 +276,31 @@
         },
         {
             "name":"wifi_triband_network_pop_up_title",
-            "value":"Connect to router by NearLink"
+            "value":"Connect to router via NearLink",
+            "attr":{
+                "priority":"translate"
+            }
         },
         {
             "name":"wifi_triband_network_notify_text",
-            "value":"Optimize network experience"
+            "value":"Experience a smoother network connection.",
+            "attr":{
+                "priority":"translate"
+            }
         },
         {
             "name":"wifi_triband_network_notify_ok_button",
-            "value":"Allow"
+            "value":"Connect now",
+            "attr":{
+                "priority":"translate"
+            }
         },
         {
             "name":"wifipro_auto_connect_notify_no_button",
-            "value":"Ignore"
+            "value":"Don't show again",
+            "attr":{
+                "priority":"translate"
+            }
         },
         {
             "name":"condition_netshare_hotspot_close",

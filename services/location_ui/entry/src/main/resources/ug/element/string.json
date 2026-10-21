@@ -349,6 +349,55 @@
             "attr":{
                 "priority":"translate"
             }
+        },
+        {
+            "name":"wifi_cdd_notify_title_orig",
+            "value":"بۇ Wi-Fi دا ئىنتېرنېت يوق، يەنىلا ئۇلامسىز؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_three_vap_notify_title_orig",
+            "value":"نۆۋەتتە Wi-Fi ئورتاقلىشىش قانىلى ئالدىراش. Wi-Fi Direct، كۆپ ئېكران ئۆزئارالىقى قاتارلىقلارنى ئىشلىتىۋاتقان بولسىڭىز، ئاۋۋال ئۈزۈپ، ئاندىن تور نۇقتىسى ئېچىڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_found_notify_title_orig",
+            "value":"دەلىللەيدىغان Wi-Fi تورى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_target_statement_content_orig",
+            "value":"ئورۇن مۇلازىمىتى تورغا ئۇلىنىدۇ؛ GNSS ياكى تور ئۇچۇرى (Wi-Fi، كۆنەك تور، كۆكچىش، IP) ئارقىلىق سىزگە ئورۇن مۇلازىمىتى تەمىنلەيدۇ. ئاچقاندىن كېيىن، ئۈسكۈنىنىڭ ئورۇن ئۇچۇرى ئىجازەت بېرىلگەن مۇلازىمەت بىلەن ئورتاقلىنىدۇ. ئورۇن ئۇچۇرى يەنە ۋاقىت رايونى يېڭىلاش، جىددىي قۇتقۇزۇش تېلېفونى قىلىش قاتارلىق سىستېما مۇلازىمەتلىرى ئۈچۈنمۇ ئىشلىتىلىدۇ. ئورۇن مۇلازىمىتى ھەققىدىكى تەپسىلاتلارنى <a>«ئورۇن مۇلازىمىتى ۋە مەخپىيەتلىك ھەققىدە بايانات»</a> ئارقىلىق كۆرۈڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_connect_timeout_notify_title_orig",
+            "value":"بۇ Wi-Fi نىڭ دەلىللەش ھالىتى كۈچتىن قالغان",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_better_network_pop_up_title_orig",
+            "value":"ياخشىراق Wi-Fi تېپىلدى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_dialog_context_orig",
+            "value":"نۆۋەتتىكى Wi-Fi ئاچقۇچ ئارقىلىق تېخىمۇ ياخشى بولغان %s غا ئۇلاشقا رۇخسەتمۇ؟",
+            "attr":{
+                "priority":"translate"
+            }
         }
     ]
 }

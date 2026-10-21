@@ -239,6 +239,34 @@
             }
         },
         {
+            "name":"wifi_triband_network_notify_text",
+            "value":"Experimente uma ligação de rede mais suave.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_triband_network_notify_ok_button",
+            "value":"Ligar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_triband_network_pop_up_title",
+            "value":"Ligar ao router via NearLink",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_notify_no_button",
+            "value":"Não mostrar novamente",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
             "name":"p2p_wsc_keypad_enter_pin_message",
             "value":"Introduzir PIN:",
             "attr":{
@@ -276,6 +304,55 @@
         {
             "name":"wifipro_auto_connect_dialog_save_context",
             "value":"Permitir a ligação a redes melhores, como %s, com a palavra-passe da rede Wi-Fi atual?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_cdd_notify_title_orig",
+            "value":"Esta rede Wi-Fi não tem acesso à Internet. Ligar?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_three_vap_notify_title_orig",
+            "value":"Não é possível criar um ponto de acesso enquanto o canal Wi-Fi está em utilização. Se estiver a utilizar o Wi-Fi Direct ou a transmissão de ecrã, desligue e tente novamente.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_found_notify_title_orig",
+            "value":"Autenticação necessária",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_target_statement_content_orig",
+            "value":"Os Serviços de localização necessitam de aceder à Internet e utilizam informações do GNSS ou da rede (Wi-Fi, rede celular, Bluetooth e IP) para fornecer serviços com base na localização. Quando isto está ativado, as informações de localização do dispositivo serão partilhadas com os serviços aos quais foi concedido acesso à localização. As suas informações de localização também serão utilizadas pelos serviços do sistema, para fins como atualizar o fuso horário e chamadas de emergência. Consulte a <a>Declaração sobre os Serviços de Localização e Privacidade</a> para obter mais informações sobre os Serviços de localização.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_connect_timeout_notify_title_orig",
+            "value":"Autenticação expirada",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_better_network_pop_up_title_orig",
+            "value":"Encontrada uma rede Wi-Fi melhor",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_dialog_context_orig",
+            "value":"Permitir a ligação a uma rede melhor (%s) através da palavra-passe da rede Wi-Fi atual?",
             "attr":{
                 "priority":"translate"
             }

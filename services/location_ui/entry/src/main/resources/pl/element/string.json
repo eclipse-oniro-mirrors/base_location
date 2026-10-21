@@ -239,6 +239,34 @@
             }
         },
         {
+            "name":"wifi_triband_network_notify_text",
+            "value":"Korzystaj z lepszego połączenia sieciowego.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_triband_network_notify_ok_button",
+            "value":"Połącz teraz",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_triband_network_pop_up_title",
+            "value":"Połącz się z routerem przez NearLink",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_notify_no_button",
+            "value":"Nie pokazuj ponownie",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
             "name":"p2p_wsc_keypad_enter_pin_message",
             "value":"Wprowadź PIN:",
             "attr":{
@@ -276,6 +304,55 @@
         {
             "name":"wifipro_auto_connect_dialog_save_context",
             "value":"Zezwolić na połączenie z lepszymi sieciami, takimi jak „%s”, przy użyciu hasła bieżącej sieci Wi-Fi?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_cdd_notify_title_orig",
+            "value":"Ta sieć Wi-Fi nie ma dostępu do Internetu. Połączyć mimo to?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_three_vap_notify_title_orig",
+            "value":"Hotspotu nie można utworzyć podczas używania kanału Wi-Fi. Jeśli korzystasz z Wi-Fi Direct lub emisji ekranu, rozłącz się i spróbuj ponownie.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_found_notify_title_orig",
+            "value":"Wymagane uwierzytelnienie",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_target_statement_content_orig",
+            "value":"Usługi lokalizacyjne wymagają połączenia z Internetem i wykorzystują system GNSS lub informacje o sieci (Wi-Fi, sieć komórkowa, Bluetooth, adres IP) do świadczenia usług opartych na lokalizacji. Gdy ta opcja jest włączona, dane lokalizacyjne urządzenia będą udostępniane usługom, którym przyznano dostęp do lokalizacji. Dane lokalizacyjne będą również wykorzystywane przez usługi systemowe, na przykład do aktualizacji strefy czasowej oraz obsługi połączeń alarmowych. Więcej informacji na temat Usług lokalizacyjnych zawiera „<a>Oświadczenie dotyczące Usług lokalizacyjnych oraz ochrony prywatności</a>”.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_connect_timeout_notify_title_orig",
+            "value":"Uwierzytelnienie wygasło",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_better_network_pop_up_title_orig",
+            "value":"Znaleziono lepszą sieć Wi-Fi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_dialog_context_orig",
+            "value":"Czy zezwolić na połączenie z lepszą siecią („%s”) przy użyciu hasła do bieżącej sieci Wi-Fi?",
             "attr":{
                 "priority":"translate"
             }

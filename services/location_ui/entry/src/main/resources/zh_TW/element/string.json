@@ -346,6 +346,55 @@
             "attr":{
                 "priority":"translate"
             }
+        },
+        {
+            "name":"wifi_cdd_notify_title_orig",
+            "value":"目前 Wi-Fi 無法上網。是否繼續使用此 Wi-Fi？",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_three_vap_notify_title_orig",
+            "value":"偵測到 Wi-Fi 共享通道已佔用。若您正使用 Wi-Fi Direct、多螢幕互動等互聯應用程式，中斷後才可啟用個人熱點。是否中斷？",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_found_notify_title_orig",
+            "value":"發現需要驗證的 Wi-Fi 網路",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_target_statement_content_orig",
+            "value":"「定位服務」需要連線網路，並使用 GNSS 或網路資訊（Wi-Fi、蜂巢式網路、藍牙、IP），以便為您提供基於位置的服務。啟用後，會將裝置的位置資訊分享給已授予定位權限的服務。您的位置資訊也將用於系統服務，例如更新時區、緊急通話等。如需關於定位服務的更多資訊，請參閱<a>關於定位服務與隱私權的聲明</a>。",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_connect_timeout_notify_title_orig",
+            "value":"此 Wi-Fi 網路驗證已過期",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_better_network_pop_up_title_orig",
+            "value":"發現更優的 Wi-Fi 網路",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_dialog_context_orig",
+            "value":"授權使用目前 Wi-Fi 金鑰連線至更優網路「%s」。",
+            "attr":{
+                "priority":"translate"
+            }
         }
     ]
 }

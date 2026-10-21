@@ -15,6 +15,7 @@
 
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
 import commonEventManager from '@ohos.commonEventManager';
+import systemParameterEnhance from '@ohos.systemParameterEnhance';
 import resourceManager from '@ohos.resourceManager';
 
 let TAG = '[WIFI-NI:WifiDialog]==>';
@@ -47,14 +48,17 @@ struct dialogPlusPage {
       let type : number = AppStorage.get('wifiDialogType') as number
       this.clearNoActionTimer()
       try {
+        let isOverSea: boolean = systemParameterEnhance.getSync('const.cust.is_oversea', 'false') === 'true';
         switch (type) {
           case this.WIFI_DIALOG_CDD:
-              this.title = this.getDialogResourceString($r('app.string.wifi_cdd_notify_title').id);
+              this.title = this.getDialogResourceString(isOverSea ?
+                $r('app.string.wifi_cdd_notify_title_orig').id : $r('app.string.wifi_cdd_notify_title').id);
               this.primaryButtonValue = this.getDialogResourceString($r('app.string.wifi_cdd_notify_no_button').id);
               this.secondaryButtonValue = this.getDialogResourceString($r('app.string.wifi_cdd_notify_yes_button').id);
               break;
           case this.WIFI_DIALOG_THREE_VAP:
-              this.title = this.getDialogResourceString($r('app.string.wifi_three_vap_notify_title').id);
+              this.title = this.getDialogResourceString(isOverSea ?
+                $r('app.string.wifi_three_vap_notify_title_orig').id : $r('app.string.wifi_three_vap_notify_title').id);
               this.primaryButtonValue = this.getDialogResourceString($r('app.string.wifi_three_vap_notify_no_button').id);
               this.secondaryButtonValue = this.getDialogResourceString($r('app.string.wifi_three_vap_notify_yes_button').id);
               break;
@@ -69,7 +73,8 @@ struct dialogPlusPage {
           case this.WIFI_DIALOG_SETTINGS_5G_AUTO_IDENTIFY_CONN:
           case this.WIFI_DIALOG_SETTINGS_5G_SAVE_SINGLE:
               let ssid : string = AppStorage.get('wifi5gSsid') as string;
-              this.title = this.getFormatString($r('app.string.wifipro_auto_connect_dialog_context'), ssid);
+              this.title = this.getFormatString(isOverSea ?
+                $r('app.string.wifipro_auto_connect_dialog_context_orig') : $r('app.string.wifipro_auto_connect_dialog_context'), ssid);
               this.primaryButtonValue = this.getDialogResourceString($r('app.string.wifipro_auto_connect_dialog_no_button').id);
               this.secondaryButtonValue = this.getDialogResourceString($r('app.string.wifipro_auto_connect_dialog_ok_button').id);
               break;

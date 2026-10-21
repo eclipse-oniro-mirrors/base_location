@@ -239,6 +239,34 @@
             }
         },
         {
+            "name":"wifi_triband_network_notify_text",
+            "value":"Nikmati sambungan rangkaian yang lebih lancar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_triband_network_notify_ok_button",
+            "value":"Sambungkan sekarang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_triband_network_pop_up_title",
+            "value":"Sambungkan ke penghala melalui NearLink",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_notify_no_button",
+            "value":"Jangan tunjukkan lagi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
             "name":"p2p_wsc_keypad_enter_pin_message",
             "value":"Masukkan PIN:",
             "attr":{
@@ -276,6 +304,55 @@
         {
             "name":"wifipro_auto_connect_dialog_save_context",
             "value":"Benarkan sambungan ke rangkaian yang lebih baik seperti \"%s\" menggunakan kata laluan untuk rangkaian Wi-Fi semasa?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_cdd_notify_title_orig",
+            "value":"Rangkaian Wi-Fi ini tidak mempunyai akses Internet. Sambungkan juga?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_three_vap_notify_title_orig",
+            "value":"Tidak dapat mewujudkan hotspot ketika saluran Wi-Fi sedang digunakan. Jika anda sedang menggunakan Wi-Fi Direct atau tayangan skrin, putuskan sambungan dan cuba lagi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_found_notify_title_orig",
+            "value":"Pengesahan diperlukan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_target_statement_content_orig",
+            "value":"Khidmat Lokasi memerlukan sambungan Internet dan menggunakan GNSS atau maklumat rangkaian (Wi-Fi, rangkaian selular, Bluetooth, IP) untuk memberi anda perkhidmatan berasaskan lokasi. Apabila ini didayakan, maklumat lokasi peranti anda akan dikongsi dengan perkhidmatan yang telah diberikan akses lokasi. Maklumat lokasi anda juga akan digunakan oleh perkhidmatan sistem, untuk tujuan seperti mengemas kini zon waktu anda dan panggilan kecemasan. Untuk maklumat lebih lanjut tentang Khidmat Lokasi, rujuk kepada <a>Kenyataan Mengenai Khidmat Lokasi dan Privasi</a>.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifi_portal_connect_timeout_notify_title_orig",
+            "value":"Pengesahan tamat tempoh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_better_network_pop_up_title_orig",
+            "value":"Rangkaian Wi-Fi yang lebih baik ditemui",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wifipro_auto_connect_dialog_context_orig",
+            "value":"Benarkan sambungan ke rangkaian lebih baik \"%s\" menggunakan kata laluan untuk rangkaian Wi-Fi semasa?",
             "attr":{
                 "priority":"translate"
             }
