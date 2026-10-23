@@ -52,6 +52,7 @@ ohos_shared_library("fenceextensionability_napi") {
 
   external_deps = [
     "hilog:libhilog",
+    "libuv:uv",
     "napi:ace_napi",
     "node:node_header_notice",
   ]
