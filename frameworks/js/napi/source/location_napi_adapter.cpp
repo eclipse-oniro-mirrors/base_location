@@ -1841,11 +1841,7 @@ napi_value RemoveGnssGeofence(napi_env env, napi_callback_info info)
     SetExecuteFuncForRemoveGnssGeofenceContext(asyncContext);
     SetCompleteFuncForRemoveGnssGeofenceContext(asyncContext);
     size_t objectArgsNum = 1;
-    napi_value doAsyncWorkResult = DoAsyncWork(env, asyncContext, argc, argv, objectArgsNum);
-    if (!asyncContext->isAsyncWorkAddToQueue) {
-        HandleSyncErrCode(env, ERRCODE_SERVICE_UNAVAILABLE);
-    }
-    return doAsyncWorkResult;
+    return DoAsyncWork(env, asyncContext, argc, argv, objectArgsNum);
 }
 
 void SetExecuteFuncForRemoveGnssGeofenceContext(GnssGeofenceAsyncContext* asyncContext)
