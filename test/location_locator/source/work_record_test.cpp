@@ -52,6 +52,7 @@ void WorkRecordTest::VerifyMarshalling(std::unique_ptr<WorkRecord>& workrecord)
     EXPECT_EQ(0, parcel.ReadInt32()); // locationRequestType
     EXPECT_EQ(0, parcel.ReadUint32()); // tokenid
     EXPECT_EQ(0, parcel.ReadUint32()); // first tokenid
+    EXPECT_EQ(0, parcel.ReadInt32()); // fixNumber
     EXPECT_EQ("deviceId", parcel.ReadString());
 }
 
