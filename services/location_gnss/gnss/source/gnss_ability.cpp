@@ -1551,7 +1551,8 @@ void GnssAbility::ReportGeofenceEvent(int fenceIndex, int event)
         LBSLOGE(GNSS, "request is nullptr");
         return;
     }
-    if (CommonUtils::GetCurrentTimeMilSec() > request->GetRequestExpirationTimeStamp()) {
+    if (CommonUtils::GetCurrentTimeMilSec() > request->GetRequestExpirationTimeStamp() ||
+        !BundleMgrHelper::CheckAppInstalled(request->GetBundleName())) {
         LBSLOGE(GNSS, "request is expiration");
         if (gnssHandler_ != nullptr) {
             AppExecFwk::InnerEvent::Pointer handlerEvent = AppExecFwk::InnerEvent::Get(
@@ -2832,6 +2833,8 @@ void GnssHandler::InitGnssEventProcessMap()
         [this](const AppExecFwk::InnerEvent::Pointer& event) { HandleAddGeofence(event); };
     gnssEventProcessMap_[static_cast<uint32_t>(GnssAbilityInterfaceCode::REMOVE_GEOFENCE)] =
         [this](const AppExecFwk::InnerEvent::Pointer& event) { HandleRemoveGeofence(event); };
+    gnssEventProcessMap_[static_cast<uint32_t>(GnssAbilityInterfaceCode::REMOVE_FENCE_WHEN_APP_UNINSTALL)] =
+        [this](const AppExecFwk::InnerEvent::Pointer& event) { HandleRemoveFenceWhenAppUninstall(event); };
     gnssEventProcessMap_[static_cast<uint32_t>(GnssAbilityInterfaceCode::ADD_FUSION_FENCE)] =
         [this](const AppExecFwk::InnerEvent::Pointer& event) { HandleAddFusionFence(event); };
     gnssEventProcessMap_[static_cast<uint32_t>(GnssAbilityInterfaceCode::REMOVE_FUSION_FENCE)] =
@@ -3016,6 +3019,15 @@ void GnssHandler::HandleRemoveGeofence(const AppExecFwk::InnerEvent::Pointer& ev
             gnssAbility->ReportFailedOperationResult(request,
                 GnssGeofenceOperateType::GNSS_GEOFENCE_OPT_TYPE_DELETE, code);
         }
+    }
+}
+
+void GnssHandler::HandleRemoveFenceWhenAppUninstall(const AppExecFwk::InnerEvent::Pointer& event)
+{
+    auto gnssAbility = GnssAbility::GetInstance();
+    std::shared_ptr<std::string> packageName = event->GetSharedObject<std::string>();
+    if (packageName != nullptr) {
+        gnssAbility->RemoveGnssGeofenceWhenAppUninstall(*packageName);
     }
 }
 
