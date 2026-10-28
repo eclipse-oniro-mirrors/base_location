@@ -41,6 +41,7 @@
 #define private public
 #include "agnss_ni_manager.h"
 #undef private
+#include "gnss_common_event_manager.h"
 #include "call_manager_client.h"
 #include "string_utils.h"
 
@@ -2152,15 +2153,15 @@ HWTEST_F(GnssAbilityTest, AgnssNiManagerRun001, TestSize.Level1)
     LBSLOGI(LOCATOR, "[GnssAbilityTest] AgnssNiManagerRun001 end");
 }
 
-HWTEST_F(GnssAbilityTest, AgnssNiManagerUnRegisterAgnssNiEvent001, TestSize.Level1)
+HWTEST_F(GnssAbilityTest, GnssCommonEventManagerUnRegisterAgnssNiEvent001, TestSize.Level1)
 {
     GTEST_LOG_(INFO)
-        << "GnssAbilityTest, AgnssNiManagerUnRegisterAgnssNiEvent001, TestSize.Level1";
-    LBSLOGI(LOCATOR, "[GnssAbilityTest] AgnssNiManagerUnRegisterAgnssNiEvent001 begin");
-    auto agnssNiManager = AGnssNiManager::GetInstance();
-    EXPECT_NE(nullptr, agnssNiManager);
-    agnssNiManager->UnRegisterAgnssNiEvent();
-    LBSLOGI(LOCATOR, "[GnssAbilityTest] AgnssNiManagerUnRegisterAgnssNiEvent001 end");
+        << "GnssAbilityTest, GnssCommonEventManagerUnRegisterAgnssNiEvent001, TestSize.Level1";
+    LBSLOGI(LOCATOR, "[GnssAbilityTest] GnssCommonEventManagerUnRegisterAgnssNiEvent001 begin");
+    auto gnssCommonEventManager = GnssCommonEventManager::GetInstance();
+    EXPECT_NE(nullptr, gnssCommonEventManager);
+    gnssCommonEventManager->UnRegisterAgnssNiEvent();
+    LBSLOGI(LOCATOR, "[GnssAbilityTest] GnssCommonEventManagerUnRegisterAgnssNiEvent001 end");
 }
 
 HWTEST_F(GnssAbilityTest, AgnssNiManagerCheckSmsSuplInit001, TestSize.Level1)
@@ -2329,52 +2330,52 @@ HWTEST_F(GnssAbilityTest, AgnssNiManagerIsInEmergency001, TestSize.Level1)
     LBSLOGI(LOCATOR, "[GnssAbilityTest] AgnssNiManagerIsInEmergency001 end");
 }
 
-HWTEST_F(GnssAbilityTest, AgnssNiManagerOnAddSystemAbility001, TestSize.Level1)
+HWTEST_F(GnssAbilityTest, GnssCommonEventManagerOnAddSystemAbility001, TestSize.Level1)
 {
     GTEST_LOG_(INFO)
-        << "GnssAbilityTest, AgnssNiManagerOnAddSystemAbility001, TestSize.Level1";
-    LBSLOGI(LOCATOR, "[GnssAbilityTest] AgnssNiManagerOnAddSystemAbility001 begin");
+        << "GnssAbilityTest, GnssCommonEventManagerOnAddSystemAbility001, TestSize.Level1";
+    LBSLOGI(LOCATOR, "[GnssAbilityTest] GnssCommonEventManagerOnAddSystemAbility001 begin");
     auto statusChangeListener = new SystemAbilityStatusChangeListener();
     int32_t systemAbilityId = -1;
     const std::string deviceId = "test";
     statusChangeListener->OnAddSystemAbility(systemAbilityId, deviceId);
-    LBSLOGI(LOCATOR, "[GnssAbilityTest] AgnssNiManagerOnAddSystemAbility001 end");
+    LBSLOGI(LOCATOR, "[GnssAbilityTest] GnssCommonEventManagerOnAddSystemAbility001 end");
 }
 
-HWTEST_F(GnssAbilityTest, AgnssNiManagerOnAddSystemAbility002, TestSize.Level1)
+HWTEST_F(GnssAbilityTest, GnssCommonEventManagerOnAddSystemAbility002, TestSize.Level1)
 {
     GTEST_LOG_(INFO)
-        << "GnssAbilityTest, AgnssNiManagerOnAddSystemAbility002, TestSize.Level1";
-    LBSLOGI(LOCATOR, "[GnssAbilityTest] AgnssNiManagerOnAddSystemAbility002 begin");
+        << "GnssAbilityTest, GnssCommonEventManagerOnAddSystemAbility002, TestSize.Level1";
+    LBSLOGI(LOCATOR, "[GnssAbilityTest] GnssCommonEventManagerOnAddSystemAbility002 begin");
     auto statusChangeListener = new SystemAbilityStatusChangeListener();
     int32_t systemAbilityId = COMMON_EVENT_SERVICE_ID;
     const std::string deviceId = "test";
     statusChangeListener->OnAddSystemAbility(systemAbilityId, deviceId);
-    LBSLOGI(LOCATOR, "[GnssAbilityTest] AgnssNiManagerOnAddSystemAbility002 end");
+    LBSLOGI(LOCATOR, "[GnssAbilityTest] GnssCommonEventManagerOnAddSystemAbility002 end");
 }
 
-HWTEST_F(GnssAbilityTest, AgnssNiManagerOnRemoveSystemAbility001, TestSize.Level1)
+HWTEST_F(GnssAbilityTest, GnssCommonEventManagerOnRemoveSystemAbility001, TestSize.Level1)
 {
     GTEST_LOG_(INFO)
-        << "GnssAbilityTest, AgnssNiManagerOnRemoveSystemAbility001, TestSize.Level1";
-    LBSLOGI(LOCATOR, "[GnssAbilityTest] AgnssNiManagerOnRemoveSystemAbility001 begin");
+        << "GnssAbilityTest, GnssCommonEventManagerOnRemoveSystemAbility001, TestSize.Level1";
+    LBSLOGI(LOCATOR, "[GnssAbilityTest] GnssCommonEventManagerOnRemoveSystemAbility001 begin");
     auto statusChangeListener = new SystemAbilityStatusChangeListener();
     int32_t systemAbilityId = -1;
     const std::string deviceId = "test";
     statusChangeListener->OnRemoveSystemAbility(systemAbilityId, deviceId);
-    LBSLOGI(LOCATOR, "[GnssAbilityTest] AgnssNiManagerOnRemoveSystemAbility001 end");
+    LBSLOGI(LOCATOR, "[GnssAbilityTest] GnssCommonEventManagerOnRemoveSystemAbility001 end");
 }
 
-HWTEST_F(GnssAbilityTest, AgnssNiManagerOnRemoveSystemAbility002, TestSize.Level1)
+HWTEST_F(GnssAbilityTest, GnssCommonEventManagerOnRemoveSystemAbility002, TestSize.Level1)
 {
     GTEST_LOG_(INFO)
-        << "GnssAbilityTest, AgnssNiManagerOnRemoveSystemAbility002, TestSize.Level1";
-    LBSLOGI(LOCATOR, "[GnssAbilityTest] AgnssNiManagerOnRemoveSystemAbility002 begin");
+        << "GnssAbilityTest, GnssCommonEventManagerOnRemoveSystemAbility002, TestSize.Level1";
+    LBSLOGI(LOCATOR, "[GnssAbilityTest] GnssCommonEventManagerOnRemoveSystemAbility002 begin");
     auto statusChangeListener = new SystemAbilityStatusChangeListener();
     int32_t systemAbilityId = COMMON_EVENT_SERVICE_ID;
     const std::string deviceId = "test";
     statusChangeListener->OnRemoveSystemAbility(systemAbilityId, deviceId);
-    LBSLOGI(LOCATOR, "[GnssAbilityTest] AgnssNiManagerOnRemoveSystemAbility002 end");
+    LBSLOGI(LOCATOR, "[GnssAbilityTest] GnssCommonEventManagerOnRemoveSystemAbility002 end");
 }
 
 HWTEST_F(GnssAbilityTest, StringUtilsStringToHex001, TestSize.Level1)
