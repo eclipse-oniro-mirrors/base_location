@@ -21,6 +21,7 @@ if (location_feature_with_gnss) {
     "$LOCATION_GNSS_ROOT/source/geofence_event_callback.cpp",
     "$LOCATION_GNSS_ROOT/source/gnss_ability.cpp",
     "$LOCATION_GNSS_ROOT/source/gnss_ability_skeleton.cpp",
+    "$LOCATION_GNSS_ROOT/source/gnss_common_event_manager.cpp",
     "$LOCATION_GNSS_ROOT/source/gnss_common_event_subscriber.cpp",
     "$LOCATION_GNSS_ROOT/source/gnss_event_callback.cpp",
     "$LOCATION_GNSS_ROOT/source/ntp/elapsed_real_time_check.cpp",
