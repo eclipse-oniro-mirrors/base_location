@@ -16,17 +16,22 @@ import("//build/test.gni")
 group("fuzztest") {
   testonly = true
   deps = [
+    "locator/appbackgroundstatusmanager_fuzzer:AppBackgroundStatusManagerFuzzTest",
     "locator/cachedlocationcallbackhost_fuzzer:CachedLocationCallbackHostFuzzTest",
     "locator/checkmessage_fuzzer:CheckMessageFuzzTest",
     "locator/countrycodecallbackhost_fuzzer:CountryCodeCallbackHostFuzzTest",
     "locator/countrycodemanager_fuzzer:CountryCodeManagerFuzzTest",
     "locator/fusioncontroller_fuzzer:FusionControllerFuzzTest",
+    "locator/fusionfenceability_fuzzer:FusionFenceAbilityFuzzTest",
     "locator/geoconvertproxy_fuzzer:GeoConvertProxyFuzzTest",
     "locator/geoconvertservice_fuzzer:GeoconvertServiceFuzzTest",
     "locator/gnss_fuzzer:GnssFuzzTest",
     "locator/gnssability_fuzzer:GnssAbilityFuzzTest",
     "locator/gnssstatuscallbackhost_fuzzer:GnssStatusCallbackHostFuzzTest",
+    "locator/locatingrequireddatacallbackhost_fuzzer:LocatingRequiredDataCallbackHostFuzzTest",
+    "locator/locationaccountmanager_fuzzer:LocationAccountManagerFuzzTest",
     "locator/locationconfigmanager_fuzzer:LocationConfigManagerFuzzTest",
+    "locator/locationdumper_fuzzer:LocationDumperFuzzTest",
     "locator/locationswitchcallbackhost_fuzzer:LocationSwitchCallbackHostFuzzTest",
     "locator/locator_fuzzer:LocatorFuzzTest",
     "locator/locatorabilitystub_fuzzer:LocatorAbilityStubFuzzTest",
@@ -44,5 +49,7 @@ group("fuzztest") {
     "locator/poiinfomanager_fuzzer:PoiInfoManagerFuzzTest",
     "locator/reportmanager_fuzzer:ReportManagerFuzzTest",
     "locator/requestmanager_fuzzer:RequestManagerFuzzTest",
+    "locator/selfrequestmanager_fuzzer:SelfRequestManagerFuzzTest",
+    "locator/stringutils_fuzzer:StringUtilsFuzzTest",
   ]
 }
