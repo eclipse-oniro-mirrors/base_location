@@ -55,6 +55,7 @@ fence_extension_ability_external_deps = [
   "image_framework:image_native",
   "ipc:ipc_napi",
   "ipc:ipc_single",
+  "libuv:uv",
   "napi:ace_napi",
   "node:node_header_notice",
   "os_account:os_account_innerkits",

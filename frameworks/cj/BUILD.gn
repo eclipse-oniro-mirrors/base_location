@@ -59,6 +59,7 @@ ohos_shared_library("cj_geolocationmanager_ffi") {
     "bundle_framework:appexecfwk_core",
     "hilog:libhilog",
     "ipc:ipc_single",
+    "libuv:uv",
     "napi:ace_napi",
     "napi:cj_bind_ffi",
     "napi:cj_bind_native",
