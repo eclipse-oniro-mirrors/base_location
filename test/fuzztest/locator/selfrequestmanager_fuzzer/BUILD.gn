@@ -65,6 +65,7 @@ ohos_fuzztest("SelfRequestManagerFuzzTest") {
     "libuv:uv",
     "napi:ace_napi",
     "safwk:system_ability_fwk",
+    "selinux_adapter:librestorecon",
     "samgr:samgr_proxy",
   ]
 
