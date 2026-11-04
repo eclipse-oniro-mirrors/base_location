@@ -428,6 +428,7 @@ bool NetworkAbility::RequestNetworkLocation(WorkRecord &workRecord)
     } else {
         data.WriteString16(Str8ToStr16(workRecord.GetName(0))); // bundleName
     }
+    data.WriteInt32(workRecord.GetFixNumber(0));
     int error = nlpServiceProxy_->SendRequest(REQUEST_NETWORK_LOCATION, data, reply, option);
     if (error != ERR_OK) {
         LBSLOGE(NETWORK, "SendRequest to cloud service failed. error = %{public}d", error);

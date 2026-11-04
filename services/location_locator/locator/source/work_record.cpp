@@ -14,7 +14,7 @@
  */
 
 #include "work_record.h"
-
+#include "location_log.h"
 #include "string_ex.h"
 
 namespace OHOS {
@@ -41,9 +41,11 @@ void WorkRecord::ReadFromParcel(Parcel& parcel)
         int nlpRequestType = parcel.ReadInt32();
         uint32_t tokenId = parcel.ReadUint32();
         uint32_t firstTokenId = parcel.ReadUint32();
+        int32_t fixNumber = parcel.ReadInt32();
 
         std::unique_ptr<RequestConfig> requestConfig = std::make_unique<RequestConfig>();
         requestConfig->SetTimeInterval(timeInterval);
+        requestConfig->SetFixNumber(fixNumber);
         std::shared_ptr<Request> request = std::make_shared<Request>();
         request->SetUid(uid);
         request->SetPid(pid);
@@ -78,6 +80,7 @@ bool WorkRecord::Marshalling(Parcel& parcel) const
         parcel.WriteInt32(nlpRequestType_[i]);
         parcel.WriteUint32(tokenId_[i]);
         parcel.WriteUint32(firstTokenId_[i]);
+        parcel.WriteInt32(fixNumber_[i]);
     }
     parcel.WriteString(deviceId_);
     return true;
@@ -211,6 +214,10 @@ bool WorkRecord::IsEmpty()
 
 bool WorkRecord::Add(const std::shared_ptr<Request>& request)
 {
+    if (request == nullptr || request->GetRequestConfig() == nullptr) {
+        LBSLOGE(LOCATOR, "Null request");
+        return false;
+    }
     std::unique_lock<std::mutex> lock(workRecordMutex_);
     uids_.push_back(request->GetUid());
     pids_.push_back(request->GetPid());
@@ -220,6 +227,7 @@ bool WorkRecord::Add(const std::shared_ptr<Request>& request)
     nlpRequestType_.push_back(request->GetNlpRequestType());
     tokenId_.push_back(request->GetTokenId());
     firstTokenId_.push_back(request->GetFirstTokenId());
+    fixNumber_.push_back(request->GetRequestConfig()->GetFixNumber());
     num_++;
     return true;
 }
@@ -235,6 +243,7 @@ bool WorkRecord::Add(WorkRecord &workRecord, int32_t index)
     nlpRequestType_.push_back(workRecord.GetNlpRequestType(index));
     tokenId_.push_back(workRecord.GetTokenId(index));
     firstTokenId_.push_back(workRecord.GetFirstTokenId(index));
+    fixNumber_.push_back(workRecord.GetFixNumber(index));
     num_++;
     return true;
 }
@@ -264,6 +273,7 @@ bool WorkRecord::Remove(int uid, int pid, std::string name, std::string uuid)
     nlpRequestType_.erase(nlpRequestType_.begin() + i);
     tokenId_.erase(tokenId_.begin() + i);
     firstTokenId_.erase(firstTokenId_.begin() + i);
+    fixNumber_.erase(fixNumber_.begin() + i);
     num_--;
     return true;
 }
@@ -291,6 +301,7 @@ bool WorkRecord::Remove(std::string name)
     nlpRequestType_.erase(nlpRequestType_.begin() + i);
     tokenId_.erase(tokenId_.begin() + i);
     firstTokenId_.erase(firstTokenId_.begin() + i);
+    fixNumber_.erase(fixNumber_.begin() + i);
     num_--;
     return true;
 }
@@ -323,6 +334,7 @@ void WorkRecord::Clear()
     std::vector<int>().swap(nlpRequestType_);
     std::vector<uint32_t>().swap(tokenId_);
     std::vector<uint32_t>().swap(firstTokenId_);
+    std::vector<int32_t>().swap(fixNumber_);
     num_ = 0;
 }
 
@@ -340,6 +352,15 @@ int WorkRecord::GetNlpRequestType(int index)
     std::unique_lock<std::mutex> lock(workRecordMutex_);
     if (index >= 0 && index < num_) {
         return nlpRequestType_[index];
+    }
+    return -1;
+}
+
+int WorkRecord::GetFixNumber(int index)
+{
+    std::unique_lock<std::mutex> lock(workRecordMutex_);
+    if (index >= 0 && index < num_ && index < fixNumber_.size()) {
+        return fixNumber_[index];
     }
     return -1;
 }

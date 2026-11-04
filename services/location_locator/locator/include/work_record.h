@@ -47,6 +47,7 @@ public:
     uint32_t GetFirstTokenId(int index);
     int GetTimeInterval(int index);
     int GetNlpRequestType(int index);
+    int GetFixNumber(int index);
     std::string GetUuid(int index);
     void ReadFromParcel(Parcel& parcel);
     bool Marshalling(Parcel& parcel) const override;
@@ -63,6 +64,7 @@ private:
     std::vector<int> nlpRequestType_;
     std::vector<uint32_t> tokenId_;
     std::vector<uint32_t> firstTokenId_;
+    std::vector<int32_t> fixNumber_;
     std::string deviceId_;
     mutable std::mutex workRecordMutex_;
 };

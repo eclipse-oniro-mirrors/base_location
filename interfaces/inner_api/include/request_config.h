@@ -82,7 +82,7 @@ public:
         fixNumber_ = fixNumber;
     }
 
-    inline int GetFixNumber()
+    inline int GetFixNumber() const
     {
         return fixNumber_;
     }
