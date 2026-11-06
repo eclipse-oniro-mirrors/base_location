@@ -122,7 +122,7 @@ LocationErrCode LocationDataRdbHelper::GetStringValue(Uri &uri, const std::strin
     if (rows == nullptr) {
         LBSLOGE(LOCATOR_STANDARD, "%{public}s can not get rows", __func__);
         ReleaseDataShareHelper(dataShareHelper);
-        return ERRCODE_SERVICE_UNAVAILABLE;
+        return ERRCODE_DATABASE_PARAM_NOT_EXIST;
     }
     rows->GoToFirstRow();
     int32_t columnIndex;
@@ -133,7 +133,7 @@ LocationErrCode LocationDataRdbHelper::GetStringValue(Uri &uri, const std::strin
         LBSLOGE(LOCATOR_STANDARD, "%{public}s can not get value", __func__);
         rows->Close();
         ReleaseDataShareHelper(dataShareHelper);
-        return ERRCODE_SERVICE_UNAVAILABLE;
+        return ERRCODE_DATABASE_PARAM_NOT_EXIST;
     }
     rows->Close();
     ReleaseDataShareHelper(dataShareHelper);

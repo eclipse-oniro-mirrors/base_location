@@ -349,6 +349,15 @@ bool LocationDataRdbManager::GetLocationEnhanceStatusForUser(int32_t& state, int
     Uri locationWorkingStateUri(GetLocationDataSecureUriForUser(LOCATION_ENHANCE_STATUS, userId));
     LocationErrCode errCode = LocationDataRdbHelper::GetInstance()->
         GetValue(locationWorkingStateUri, LOCATION_ENHANCE_STATUS, state);
+    if (errCode = ERRCODE_DATABASE_PARAM_NOT_EXIST) {
+        int switchState = QuerySwitchStateForUser(userId);
+        state = switchState == ENABLED ? ENABLED : DISABLED;
+        errCode = LocationDataRdbHelper::GetInstance()->SetValue(
+            locationWorkingStateUri, LOCATION_ENHANCE_STATUS, state);
+        LBSLOGE(COMMON_UTILS,
+            "LocationEnhanceStatus Not Exist, Update LocationEnhanceStatus:%{public}d, error:%{public}d",
+            state, errCode);
+    }
     if (errCode != ERRCODE_SUCCESS) {
         LBSLOGE(COMMON_UTILS,
             "can not get value, key = %{public}s, errcode = %{public}d", LOCATION_ENHANCE_STATUS.c_str(), errCode);
@@ -356,7 +365,6 @@ bool LocationDataRdbManager::GetLocationEnhanceStatusForUser(int32_t& state, int
     }
     return true;
 }
-
 
 bool LocationDataRdbManager::IsUserIdInActiveIds(std::vector<int> activeIds, std::string userId)
 {
