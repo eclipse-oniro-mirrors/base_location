@@ -349,7 +349,7 @@ bool LocationDataRdbManager::GetLocationEnhanceStatusForUser(int32_t& state, int
     Uri locationWorkingStateUri(GetLocationDataSecureUriForUser(LOCATION_ENHANCE_STATUS, userId));
     LocationErrCode errCode = LocationDataRdbHelper::GetInstance()->
         GetValue(locationWorkingStateUri, LOCATION_ENHANCE_STATUS, state);
-    if (errCode = ERRCODE_DATABASE_PARAM_NOT_EXIST) {
+    if (errCode == ERRCODE_DATABASE_PARAM_NOT_EXIST) {
         int switchState = QuerySwitchStateForUser(userId);
         state = switchState == ENABLED ? ENABLED : DISABLED;
         errCode = LocationDataRdbHelper::GetInstance()->SetValue(
