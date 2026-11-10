@@ -36,7 +36,6 @@ ohos_fuzztest("GeofenceRequestFuzzTest") {
     "hilog:libhilog",
     "init:libbegetutil",
     "ipc:ipc_core",
-    "json:nlohmann_json_static",
     "samgr:samgr_proxy",
   ]
 }
