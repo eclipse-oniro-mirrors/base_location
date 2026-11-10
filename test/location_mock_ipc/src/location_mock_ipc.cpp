@@ -115,7 +115,7 @@ HWTEST_F(LocationMockIpcTest, MockGnssStubCallingPermission001, TestSize.Level1)
         << "LocationMockIpcTest, MockGnssStubCallingPermission001, TestSize.Level1";
     LBSLOGI(LOCATOR, "[LocationMockIpcTest] MockGnssStubCallingPermission001 begin");
 
-    auto gnssAbilityStub = GnssAbility::GetInstance(); 
+    auto gnssAbilityStub = GnssAbility::GetInstance();
     for (auto iter = ipcMap_.begin(); iter != ipcMap_.end(); iter++) {
         if (iter->second != g_gnssIpcCode) {
             continue;
