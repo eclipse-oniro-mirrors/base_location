@@ -91,26 +91,23 @@ struct dialogPlusPage {
         console.error(TAG, `Failed to get dialog resources: ${JSON.stringify(err)}`);
         return;
       }
-      AlertDialog.show(
-        {
-          title: '',
-          message: this.title,
-          textStyle: { wordBreak: WordBreak.BREAK_WORD },
-          autoCancel: false,
-          primaryButton: {
-            value: this.primaryButtonValue,
-            action: () => {
-              this.onCancel(type);
-            }
-          },
-          secondaryButton: {
-            value: this.secondaryButtonValue,
-            action: () => {
-              this.onAccept(type);
-            }
+      this.getUIContext().showAlertDialog({
+        autoCancel: false,
+        message: this.title,
+        textStyle: { wordBreak: WordBreak.BREAK_WORD },
+        primaryButton: {
+          value: this.primaryButtonValue,
+          action: () => {
+            this.onCancel(type);
+          }
+        },
+        secondaryButton: {
+          value: this.secondaryButtonValue,
+          action: () => {
+            this.onAccept(type);
           }
         }
-      )
+      });
       console.info(TAG, 'dialog show success')
     }
   }

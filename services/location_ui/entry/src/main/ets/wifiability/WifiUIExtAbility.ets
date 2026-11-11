@@ -17,6 +17,8 @@ import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
 import Want from '@ohos.app.ability.Want';
 import deviceInfo from '@ohos.deviceInfo';
+import systemParameterEnhance from '@ohos.systemParameterEnhance';
+import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 const TAG: string = '[WIFI-NI]==>';
 const DEVICE_TYPE_TV = 'tv';
@@ -24,6 +26,7 @@ const WIFI_DIALOG_P2P_WSC_PBC: number = 4;
 const WIFI_DIALOG_P2P_WSC_DISPLAY: number = 6;
 const WIFI_DIALOG_P2P_WSC_KEYPAD: number = 7;
 const WIFI_DIALOG_P2P_UNTRUST_INVITE: number = 8;
+const SYSTEM_COLOR_MODE_KEY: string = 'persist.ace.darkmode';
 
 export default class WifiUIExtAbility extends UIExtensionAbility {
     onSessionCreate(want: Want, session: UIExtensionContentSession) {
@@ -31,6 +34,7 @@ export default class WifiUIExtAbility extends UIExtensionAbility {
         if (want.parameters == undefined) {
             return;
         }
+        this.applySystemColorMode();
 
         console.info(TAG, `wifiDialogType: ` + want.parameters?.['wifiDialogType']);
         AppStorage.setOrCreate('wifiDialogType', want.parameters?.['wifiDialogType']);
@@ -64,5 +68,17 @@ export default class WifiUIExtAbility extends UIExtensionAbility {
 
     onSessionDestroy(session: UIExtensionContentSession) {
         console.info(TAG, `WifiUIExtAbility onSessionDestroy`)
+    }
+    
+    private applySystemColorMode(): void {
+        try {
+            let systemColorMode: string = systemParameterEnhance.getSync(SYSTEM_COLOR_MODE_KEY, 'light');
+            console.info(TAG, `applySystemColorMode systemColorMode: ${systemColorMode}`);
+            let colorMode: ConfigurationConstant.ColorMode = systemColorMode === 'dark' ?
+                ConfigurationConstant.ColorMode.COLOR_MODE_DARK : ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
+            this.context.getApplicationContext().setColorMode(colorMode);
+        } catch (err) {
+            console.error(TAG, `applySystemColorMode failed: ${JSON.stringify(err)}`);
+        }
     }
 }
