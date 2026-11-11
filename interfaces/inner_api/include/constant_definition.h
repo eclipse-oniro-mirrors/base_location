@@ -175,8 +175,8 @@ enum LocationErrCode {
     ERRCODE_BEACONFENCE_EXCEED_MAXIMUM = 3501601, /* The number of beacon fence exceeds the maximum. */
     /* Failed to delete the fence due to incorrect beacon fence information. */
     ERRCODE_BEACONFENCE_INCORRECT_ID = 3501602,
-    ERRCODE_BEACONFENCE_DUPLICATE_INFORMATION = 3501603 /* Duplicate beacon fence information. */
-    ERRCODE_DATABASE_PARAM_NOT_EXIST = 3601001,  /* Query Database Failed, Param Do not Exist*/
+    ERRCODE_BEACONFENCE_DUPLICATE_INFORMATION = 3501603, /* Duplicate beacon fence information. */
+    ERRCODE_DATABASE_PARAM_NOT_EXIST = 3601001  /* Query Database Failed, Param Do not Exist*/
 };
 
 enum FenceExtensionErrCode {
