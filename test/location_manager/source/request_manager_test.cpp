@@ -486,7 +486,11 @@ HWTEST_F(RequestManagerTest, RequestGetProxyNameTest010, TestSize.Level1)
     request->SetRequestConfig(*requestConfig9);
     auto proxyList9 = std::make_shared<std::list<std::string>>();
     request->GetProxyName(proxyList9);
+#ifdef EMULATOR_ENABLED
+    EXPECT_NE(true, proxyList9->empty());
+#else
     EXPECT_EQ(true, proxyList9->empty());
+#endif
     LBSLOGI(REQUEST_MANAGER, "[RequestManagerTest] RequestGetProxyNameTest010 end");
 }
 
@@ -502,7 +506,11 @@ HWTEST_F(RequestManagerTest, RequestGetProxyNameTest011, TestSize.Level1)
     request->SetRequestConfig(*requestConfig10);
     auto proxyList10 = std::make_shared<std::list<std::string>>();
     request->GetProxyName(proxyList10);
+#ifdef EMULATOR_ENABLED
+    EXPECT_NE(true, proxyList10->empty());
+#else
     EXPECT_EQ(true, proxyList10->empty());
+#endif
     LBSLOGI(REQUEST_MANAGER, "[RequestManagerTest] RequestGetProxyNameTest011 end");
 }
 

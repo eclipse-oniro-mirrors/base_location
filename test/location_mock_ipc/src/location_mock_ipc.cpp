@@ -115,7 +115,7 @@ HWTEST_F(LocationMockIpcTest, MockGnssStubCallingPermission001, TestSize.Level1)
         << "LocationMockIpcTest, MockGnssStubCallingPermission001, TestSize.Level1";
     LBSLOGI(LOCATOR, "[LocationMockIpcTest] MockGnssStubCallingPermission001 begin");
 
-    auto gnssAbilityStub = sptr<GnssAbility>(new (std::nothrow) GnssAbility());
+    auto gnssAbilityStub = GnssAbility::GetInstance();
     for (auto iter = ipcMap_.begin(); iter != ipcMap_.end(); iter++) {
         if (iter->second != g_gnssIpcCode) {
             continue;
@@ -128,7 +128,6 @@ HWTEST_F(LocationMockIpcTest, MockGnssStubCallingPermission001, TestSize.Level1)
             gnssAbilityStub->OnRemoteRequest(iter->first, parcel, reply, option));
     }
     sleep(WAIT_RESPONSE_SEC);
-    gnssAbilityStub = nullptr;
     LBSLOGI(LOCATOR, "[LocationMockIpcTest] MockGnssStubCallingPermission001 end");
 }
 #endif
