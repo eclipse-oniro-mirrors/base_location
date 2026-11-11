@@ -13,10 +13,13 @@
  * limitations under the License.
  */
 #include "location_data_rdb_manager.h"
+#include "location_sa_load_manager.h"
+#include "system_ability_definition.h"
 
 #include "common_utils.h"
 #include "location_data_rdb_helper.h"
 #include "parameter.h"
+#include "parameters.h"
 #include <nlohmann/json.hpp>
 #include "hook_utils.h"
 
@@ -349,7 +352,9 @@ bool LocationDataRdbManager::GetLocationEnhanceStatusForUser(int32_t& state, int
     Uri locationWorkingStateUri(GetLocationDataSecureUriForUser(LOCATION_ENHANCE_STATUS, userId));
     LocationErrCode errCode = LocationDataRdbHelper::GetInstance()->
         GetValue(locationWorkingStateUri, LOCATION_ENHANCE_STATUS, state);
-    if (errCode == ERRCODE_DATABASE_PARAM_NOT_EXIST) {
+    std::string deviceType = system::GetParameter("const.product.devicetype", "");
+    if (errCode == ERRCODE_DATABASE_PARAM_NOT_EXIST && deviceType == "phone" &&
+        LocationSaLoadManager::CheckIfSystemAbilityAvailable(DISTRIBUTED_KV_DATA_SERVICE_ABILITY_ID)) {
         int switchState = QuerySwitchStateForUser(userId);
         state = switchState == ENABLED ? ENABLED : DISABLED;
         errCode = LocationDataRdbHelper::GetInstance()->SetValue(
