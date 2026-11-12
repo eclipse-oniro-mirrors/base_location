@@ -769,7 +769,8 @@ void RequestManager::UnRegisterLocationErrorCallback(
 
 void RequestManager::ReportLocationError(const int errorCode, std::shared_ptr<Request> request)
 {
-    if (errorCode == LOCATING_FAILED_INTERNET_ACCESS_FAILURE) {
+    if (errorCode == LOCATING_FAILED_INTERNET_ACCESS_FAILURE && request->GetUid() != 0
+            && !ProxyFreezeManager::GetInstance()->IsProxyPid(request->GetPid())) {
         auto locatorCallback = request->GetLocatorCallBack();
         bool isNeedLocation = true;
         if (request->GetRequestConfig() != nullptr) {
