@@ -20,6 +20,7 @@
 #include <thread>
 #include <fstream>
 
+#include "agnss_ni_manager.h"
 #include "gnss_common_event_manager.h"
 #include "event_runner.h"
 #include "idevmgr_hdi.h"
@@ -138,6 +139,7 @@ GnssAbility::GnssAbility() : SystemAbility(LOCATION_GNSS_SA_ID, true)
 #endif
 
     fenceId_ = 0;
+    auto agnssNiManager = AGnssNiManager::GetInstance();
     GnssCommonEventManager::GetInstance()->SubscribeSaStatusChangeListner();
     MonitorNetwork();
     PreRestoreGeofenceRequest();
