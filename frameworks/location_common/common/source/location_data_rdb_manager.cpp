@@ -32,6 +32,7 @@ const std::string LOCATION_ENHANCE_STATUS = "location_enhance_status";
 std::mutex LocationDataRdbManager::locationSwitchModeMutex_;
 std::mutex LocationDataRdbManager::locationWorkingStateMutex_;
 std::mutex LocationDataRdbManager::gnssSessionStateMutex_;
+std::mutex LocationDataRdbManager::locationPrivacyStateMutex_;
 std::string LocationDataRdbManager::GetLocationDataUriByCurrentUserId(std::string key)
 {
     int userId = 0;
@@ -309,6 +310,7 @@ void LocationDataRdbManager::SyncSwitchStatus()
 
 bool LocationDataRdbManager::SetLocationEnhanceStatus(int32_t state)
 {
+    std::unique_lock<std::mutex> lock(locationPrivacyStateMutex_);
     Uri locationWorkingStateUri(GetLocationDataSecureUri(LOCATION_ENHANCE_STATUS));
     LocationErrCode errCode = LocationDataRdbHelper::GetInstance()->
         SetValue(locationWorkingStateUri, LOCATION_ENHANCE_STATUS, state);
@@ -322,6 +324,7 @@ bool LocationDataRdbManager::SetLocationEnhanceStatus(int32_t state)
 
 bool LocationDataRdbManager::SetLocationEnhanceStatusForUser(int32_t state, int userId)
 {
+    std::unique_lock<std::mutex> lock(locationPrivacyStateMutex_);
     Uri locationWorkingStateUri(GetLocationDataSecureUriForUser(LOCATION_ENHANCE_STATUS, userId));
     LocationErrCode errCode = LocationDataRdbHelper::GetInstance()->
         SetValue(locationWorkingStateUri, LOCATION_ENHANCE_STATUS, state);
@@ -336,6 +339,7 @@ bool LocationDataRdbManager::SetLocationEnhanceStatusForUser(int32_t state, int 
 
 bool LocationDataRdbManager::GetLocationEnhanceStatus(int32_t& state)
 {
+    std::unique_lock<std::mutex> lock(locationPrivacyStateMutex_);
     Uri locationWorkingStateUri(GetLocationDataSecureUri(LOCATION_ENHANCE_STATUS));
     LocationErrCode errCode = LocationDataRdbHelper::GetInstance()->
         GetValue(locationWorkingStateUri, LOCATION_ENHANCE_STATUS, state);
@@ -349,6 +353,7 @@ bool LocationDataRdbManager::GetLocationEnhanceStatus(int32_t& state)
 
 bool LocationDataRdbManager::GetLocationEnhanceStatusForUser(int32_t& state, int userId)
 {
+    std::unique_lock<std::mutex> lock(locationPrivacyStateMutex_);
     Uri locationWorkingStateUri(GetLocationDataSecureUriForUser(LOCATION_ENHANCE_STATUS, userId));
     LocationErrCode errCode = LocationDataRdbHelper::GetInstance()->
         GetValue(locationWorkingStateUri, LOCATION_ENHANCE_STATUS, state);

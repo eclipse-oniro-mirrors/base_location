@@ -58,6 +58,7 @@ private:
     static std::mutex locationSwitchModeMutex_;
     static std::mutex locationWorkingStateMutex_;
     static std::mutex gnssSessionStateMutex_;
+    static std::mutex locationPrivacyStateMutex_;
 };
 } // namespace Location
 } // namespace OHOS
