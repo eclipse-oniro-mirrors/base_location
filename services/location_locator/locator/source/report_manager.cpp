@@ -308,9 +308,11 @@ std::unique_ptr<Location> ReportManager::GetPermittedLocation(const std::shared_
     if (!CommonUtils::IsAppBelongActiveAccounts(identity, activeIds)) {
         //app is not in current user, not need to report
         LBSLOGI(REPORT_MANAGER, "GetPermittedLocation uid: %{public}d CheckAppForUser fail", tokenId);
-        auto locationErrorCallback = request->GetLocationErrorCallBack();
-        if (locationErrorCallback != nullptr) {
-            locationErrorCallback->OnErrorReport(LOCATING_FAILED_LOCATION_PERMISSION_DENIED);
+        if (!ProxyFreezeManager::GetInstance()->IsProxyPid(request->GetPid())) {
+            auto locationErrorCallback = request->GetLocationErrorCallBack();
+            if (locationErrorCallback != nullptr) {
+                locationErrorCallback->OnErrorReport(LOCATING_FAILED_LOCATION_PERMISSION_DENIED);
+            }
         }
         return nullptr;
     }
