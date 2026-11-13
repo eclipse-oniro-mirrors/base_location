@@ -631,7 +631,7 @@ HWTEST_F(LocationCommonTest, LocationDataRdbHelperTest003, TestSize.Level1)
     int32_t state = DISABLED;
     LocationDataRdbHelper::GetInstance()->SetValue(unknownUri, LOCATION_DATA_COLUMN_ENABLE, state);
 
-    EXPECT_EQ(ERRCODE_SERVICE_UNAVAILABLE, LocationDataRdbHelper::GetInstance()->
+    EXPECT_EQ(ERRCODE_DATABASE_PARAM_NOT_EXIST, LocationDataRdbHelper::GetInstance()->
         GetValue(unknownUri, LOCATION_DATA_COLUMN_ENABLE, state));
     LBSLOGI(LOCATOR, "[LocationCommonTest] LocationDataRdbHelperTest003 end");
 }
