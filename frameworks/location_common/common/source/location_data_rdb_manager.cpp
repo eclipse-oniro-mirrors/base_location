@@ -353,16 +353,17 @@ bool LocationDataRdbManager::GetLocationEnhanceStatus(int32_t& state)
 
 bool LocationDataRdbManager::GetLocationEnhanceStatusForUser(int32_t& state, int userId)
 {
-    std::string ccmConfig = system::GetParameter("const.dfx.enable_retail", "");
+    
 #ifndef EMULATOR_ENABLED
+    std::string enableRetail = system::GetParameter("const.dfx.enable_retail", "");
     int switchState = QuerySwitchStateForUser(userId);
 #endif
     std::unique_lock<std::mutex> lock(locationPrivacyStateMutex_);
     Uri locationWorkingStateUri(GetLocationDataSecureUriForUser(LOCATION_ENHANCE_STATUS, userId));
     LocationErrCode errCode = LocationDataRdbHelper::GetInstance()->
         GetValue(locationWorkingStateUri, LOCATION_ENHANCE_STATUS, state);
-    if (ccmConfig != "true") {
 #ifndef EMULATOR_ENABLED
+    if (enableRetail != "true") {
         std::string deviceType = system::GetParameter("const.product.devicetype", "");
         if (errCode == ERRCODE_DATABASE_PARAM_NOT_EXIST && deviceType == "phone" &&
             LocationSaLoadManager::CheckIfSystemAbilityAvailable(DISTRIBUTED_KV_DATA_SERVICE_ABILITY_ID)) {
@@ -373,8 +374,8 @@ bool LocationDataRdbManager::GetLocationEnhanceStatusForUser(int32_t& state, int
                 "LocationEnhanceStatus Not Exist, Update LocationEnhanceStatus:%{public}d, error:%{public}d",
                 state, errCode);
         }
-#endif
     }
+#endif
     if (errCode != ERRCODE_SUCCESS) {
         LBSLOGE(COMMON_UTILS,
             "can not get value, key = %{public}s, errcode = %{public}d", LOCATION_ENHANCE_STATUS.c_str(), errCode);
