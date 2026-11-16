@@ -2882,7 +2882,8 @@ ErrCode LocatorAbility::StartLocatingProcess(const RequestConfig& requestConfig,
     return LOCATION_ERRCODE_NOT_SUPPORTED;
 #endif
     if (LocationDataRdbManager::QuerySwitchStateWithUid(identity.GetUid()) != ENABLED &&
-        !GetLocationSwitchIgnoredFlag(identity.GetTokenId())) {
+        !GetLocationSwitchIgnoredFlag(identity.GetTokenId()) &&
+        !ProxyFreezeManager::GetInstance()->IsProxyPid(identity.GetPid())) {
         ReportErrorStatus(cb, ERROR_SWITCH_UNOPEN);
     }
     // update offset before add request
