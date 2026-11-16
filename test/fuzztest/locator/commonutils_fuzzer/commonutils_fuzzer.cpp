@@ -71,7 +71,6 @@ namespace OHOS {
         int32_t digitRet = 0;
         CommonUtils::ConvertStringToDigit(input, digitRet);
         CommonUtils::IsValidForStoull(input, size);
-        CommonUtils::IsStrValidForStoi(input);
         CommonUtils::IsExistFile(input);
         CommonUtils::GenerateUuid();
     }
