@@ -353,7 +353,6 @@ bool LocationDataRdbManager::GetLocationEnhanceStatus(int32_t& state)
 
 bool LocationDataRdbManager::GetLocationEnhanceStatusForUser(int32_t& state, int userId)
 {
-    
 #ifndef EMULATOR_ENABLED
     std::string enableRetail = system::GetParameter("const.dfx.enable_retail", "");
     int switchState = QuerySwitchStateForUser(userId);
