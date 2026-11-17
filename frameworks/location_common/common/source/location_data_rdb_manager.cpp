@@ -353,21 +353,28 @@ bool LocationDataRdbManager::GetLocationEnhanceStatus(int32_t& state)
 
 bool LocationDataRdbManager::GetLocationEnhanceStatusForUser(int32_t& state, int userId)
 {
+#ifndef EMULATOR_ENABLED
+    std::string enableRetail = system::GetParameter("const.dfx.enable_retail", "");
+    int switchState = QuerySwitchStateForUser(userId);
+#endif
     std::unique_lock<std::mutex> lock(locationPrivacyStateMutex_);
     Uri locationWorkingStateUri(GetLocationDataSecureUriForUser(LOCATION_ENHANCE_STATUS, userId));
     LocationErrCode errCode = LocationDataRdbHelper::GetInstance()->
         GetValue(locationWorkingStateUri, LOCATION_ENHANCE_STATUS, state);
-    std::string deviceType = system::GetParameter("const.product.devicetype", "");
-    if (errCode == ERRCODE_DATABASE_PARAM_NOT_EXIST && deviceType == "phone" &&
-        LocationSaLoadManager::CheckIfSystemAbilityAvailable(DISTRIBUTED_KV_DATA_SERVICE_ABILITY_ID)) {
-        int switchState = QuerySwitchStateForUser(userId);
-        state = switchState == ENABLED ? ENABLED : DISABLED;
-        errCode = LocationDataRdbHelper::GetInstance()->SetValue(
-            locationWorkingStateUri, LOCATION_ENHANCE_STATUS, state);
-        LBSLOGE(COMMON_UTILS,
-            "LocationEnhanceStatus Not Exist, Update LocationEnhanceStatus:%{public}d, error:%{public}d",
-            state, errCode);
+#ifndef EMULATOR_ENABLED
+    if (enableRetail != "true") {
+        std::string deviceType = system::GetParameter("const.product.devicetype", "");
+        if (errCode == ERRCODE_DATABASE_PARAM_NOT_EXIST && deviceType == "phone" &&
+            LocationSaLoadManager::CheckIfSystemAbilityAvailable(DISTRIBUTED_KV_DATA_SERVICE_ABILITY_ID)) {
+            state = switchState == ENABLED ? ENABLED : DISABLED;
+            errCode = LocationDataRdbHelper::GetInstance()->SetValue(
+                locationWorkingStateUri, LOCATION_ENHANCE_STATUS, state);
+            LBSLOGE(COMMON_UTILS,
+                "LocationEnhanceStatus Not Exist, Update LocationEnhanceStatus:%{public}d, error:%{public}d",
+                state, errCode);
+        }
     }
+#endif
     if (errCode != ERRCODE_SUCCESS) {
         LBSLOGE(COMMON_UTILS,
             "can not get value, key = %{public}s, errcode = %{public}d", LOCATION_ENHANCE_STATUS.c_str(), errCode);
