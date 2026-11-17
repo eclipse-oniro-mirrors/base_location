@@ -102,6 +102,7 @@ int LocatorCallbackNapi::OnRemoteRequest(uint32_t code,
 
 void LocatorCallbackNapi::HandleLocationInfoEvent(MessageParcel& data)
 {
+    std::unique_lock<std::mutex> reportLock(reportMutex_);
     SetErrorType(LocationErrCode::ERRCODE_SUCCESS);
     std::unique_ptr<Location> location = Location::UnmarshallingMakeUnique(data);
     OnLocationReport(location);
@@ -119,6 +120,7 @@ void LocatorCallbackNapi::HandleLocationInfoEvent(MessageParcel& data)
 
 void LocatorCallbackNapi::HandleErrorInfoEvent(MessageParcel& data)
 {
+    std::unique_lock<std::mutex> reportLock(reportMutex_);
     int errorCode = data.ReadInt32();
     SetErrorType(errorCode);
     LBSLOGI(LOCATOR_STANDARD, "CallbackSutb receive ERROR_EVENT. errorCode:%{public}d", errorCode);

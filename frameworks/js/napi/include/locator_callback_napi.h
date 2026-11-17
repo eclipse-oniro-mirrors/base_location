@@ -155,6 +155,7 @@ private:
     napi_ref failHandlerCb_;
     napi_ref completeHandlerCb_;
     int fixNumber_;
+    std::mutex reportMutex_;
     std::mutex mutex_;
     CountDownLatch* latch_;
     std::shared_ptr<Location> singleLocation_;
