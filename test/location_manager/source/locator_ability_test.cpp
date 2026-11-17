@@ -72,6 +72,7 @@
 
 #define private public
 #include "locator_ability.h"
+#include "location_config_manager.h"
 #undef private
 
 #include "mock_i_remote_object.h"
@@ -936,9 +937,11 @@ HWTEST_F(LocatorAbilityTest, EnableAbilityForUser_Test_001, TestSize.Level1)
     LBSLOGI(LOCATOR, "[LocatorAbilityTest] EnableAbilityForUser_Test_001 start");
     // Arrange
     int32_t userId = 100;
+    LocationConfigManager::GetInstance()->SetPrivacyTypeStateForUser(PRIVACY_TYPE_STARTUP, true, userId);
 
     // Act
     ErrCode result = locatorAbility->EnableAbilityForUser(false, userId);
+    EXPECT_EQ(result, ERRCODE_SUCCESS);
     result = locatorAbility->EnableAbilityForUser(true, userId);
 
     // Assert
