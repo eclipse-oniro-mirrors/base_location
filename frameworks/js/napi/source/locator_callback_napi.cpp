@@ -80,17 +80,7 @@ int LocatorCallbackNapi::OnRemoteRequest(uint32_t code,
     }
     switch (code) {
         case RECEIVE_LOCATION_INFO_EVENT: {
-            std::unique_ptr<Location> location = Location::UnmarshallingMakeUnique(data);
-            OnLocationReport(location);
-            if (location->GetLocationSourceType() == LocationSourceType::NETWORK_TYPE) {
-                inHdArea_ = false;
-            }
-            if (NeedSetSingleLocation(location)) {
-                SetSingleLocation(location);
-            }
-            if (IfReportAccuracyLocation()) {
-                CountDown();
-            }
+            HandleLocationInfoEvent(data);
             break;
         }
         case RECEIVE_LOCATION_STATUS_EVENT: {
@@ -99,17 +89,7 @@ int LocatorCallbackNapi::OnRemoteRequest(uint32_t code,
             break;
         }
         case RECEIVE_ERROR_INFO_EVENT: {
-            int errorCode = data.ReadInt32();
-            SetErrorType(errorCode);
-            LBSLOGI(LOCATOR_STANDARD, "CallbackSutb receive ERROR_EVENT. errorCode:%{public}d", errorCode);
-            if (errorCode == ERRCODE_LOCATING_NETWORK_FAIL) {
-                inHdArea_ = false;
-                if (GetSingleLocation() != nullptr) {
-                    CountDown();
-                }
-            } else {
-                OnErrorReport(errorCode);
-            }
+            HandleErrorInfoEvent(data);
             break;
         }
         default: {
@@ -118,6 +98,41 @@ int LocatorCallbackNapi::OnRemoteRequest(uint32_t code,
         }
     }
     return 0;
+}
+
+void LocatorCallbackNapi::HandleLocationInfoEvent(MessageParcel& data)
+{
+    SetErrorType(LocationErrCode::ERRCODE_SUCCESS);
+    std::unique_ptr<Location> location = Location::UnmarshallingMakeUnique(data);
+    OnLocationReport(location);
+    if (location->GetLocationSourceType() == LocationSourceType::NETWORK_TYPE) {
+        std::unique_lock<std::mutex> guard(mutex_);
+        inHdArea_ = false;
+    }
+    if (NeedSetSingleLocation(location)) {
+        SetSingleLocation(location);
+    }
+    if (IfReportAccuracyLocation()) {
+        CountDown();
+    }
+}
+
+void LocatorCallbackNapi::HandleErrorInfoEvent(MessageParcel& data)
+{
+    int errorCode = data.ReadInt32();
+    SetErrorType(errorCode);
+    LBSLOGI(LOCATOR_STANDARD, "CallbackSutb receive ERROR_EVENT. errorCode:%{public}d", errorCode);
+    if (errorCode == ERRCODE_LOCATING_NETWORK_FAIL) {
+        {
+            std::unique_lock<std::mutex> guard(mutex_);
+            inHdArea_ = false;
+        }
+        if (GetSingleLocation() != nullptr) {
+            CountDown();
+        }
+    } else {
+        OnErrorReport(errorCode);
+    }
 }
 
 napi_env LocatorCallbackNapi::GetEnv()
@@ -453,6 +468,7 @@ void LocatorCallbackNapi::SetCount(int count)
 
 bool LocatorCallbackNapi::NeedSetSingleLocation(const std::unique_ptr<Location>& location)
 {
+    std::unique_lock<std::mutex> guard(mutex_);
     if (locationPriority_ == LOCATION_PRIORITY_ACCURACY &&
         singleLocation_ != nullptr &&
         location->GetLocationSourceType() == LocationSourceType::NETWORK_TYPE) {
@@ -464,6 +480,10 @@ bool LocatorCallbackNapi::NeedSetSingleLocation(const std::unique_ptr<Location>&
 
 bool LocatorCallbackNapi::IfReportAccuracyLocation()
 {
+    std::unique_lock<std::mutex> guard(mutex_);
+    if (singleLocation_ == nullptr) {
+        return true;
+    }
     if (locationPriority_ == LOCATION_PRIORITY_ACCURACY &&
         (((singleLocation_->GetLocationSourceType() == LocationSourceType::GNSS_TYPE ||
         singleLocation_->GetLocationSourceType() == LocationSourceType::RTK_TYPE) && inHdArea_) ||

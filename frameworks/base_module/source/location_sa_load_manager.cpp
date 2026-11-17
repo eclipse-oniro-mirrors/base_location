@@ -46,7 +46,7 @@ LocationSaLoadManager::~LocationSaLoadManager()
 LocationErrCode LocationSaLoadManager::LoadLocationSa(int32_t systemAbilityId)
 {
     LBSLOGD(LOCATOR, "%{public}s enter, systemAbilityId = [%{public}d] loading", __func__, systemAbilityId);
-    InitLoadState();
+    InitLoadState(systemAbilityId);
     sptr<ISystemAbilityManager> samgr =
         SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
     if (samgr == nullptr) {
@@ -64,18 +64,20 @@ LocationErrCode LocationSaLoadManager::LoadLocationSa(int32_t systemAbilityId)
     return WaitLoadStateChange(systemAbilityId);
 }
 
-void LocationSaLoadManager::InitLoadState()
+void LocationSaLoadManager::InitLoadState(int32_t systemAbilityId)
 {
     std::unique_lock<std::mutex> lock(locatorMutex_);
-    state_ = false;
+    loadStateMap_[systemAbilityId] = false;
 }
 
 LocationErrCode LocationSaLoadManager::WaitLoadStateChange(int32_t systemAbilityId)
 {
     std::unique_lock<std::mutex> lock(locatorMutex_);
-    auto wait = locatorCon_.wait_for(lock, std::chrono::milliseconds(LOCATION_LOADSA_TIMEOUT_MS), [this] {
-        return state_ == true;
-    });
+    auto wait = locatorCon_.wait_for(lock, std::chrono::milliseconds(LOCATION_LOADSA_TIMEOUT_MS),
+        [this, systemAbilityId] {
+            auto iter = loadStateMap_.find(systemAbilityId);
+            return iter != loadStateMap_.end() && iter->second;
+        });
     if (!wait) {
         LBSLOGE(LOCATOR_STANDARD, "locator sa [%{public}d] start time out.", systemAbilityId);
         return ERRCODE_SERVICE_UNAVAILABLE;
@@ -107,18 +109,19 @@ LocationErrCode LocationSaLoadManager::UnloadLocationSa(int32_t systemAbilityId)
     return ERRCODE_SUCCESS;
 }
 
-void LocationSaLoadManager::LoadSystemAbilitySuccess()
+void LocationSaLoadManager::LoadSystemAbilitySuccess(int32_t systemAbilityId)
 {
     std::unique_lock<std::mutex> lock(locatorMutex_);
-    state_ = true;
-    locatorCon_.notify_one();
+    loadStateMap_[systemAbilityId] = true;
+    // Wake all waiters; each one checks its own SA id predicate and keeps waiting if it is not the target.
+    locatorCon_.notify_all();
 }
 
-void LocationSaLoadManager::LoadSystemAbilityFail()
+void LocationSaLoadManager::LoadSystemAbilityFail(int32_t systemAbilityId)
 {
     std::unique_lock<std::mutex> lock(locatorMutex_);
-    state_ = false;
-    locatorCon_.notify_one();
+    loadStateMap_[systemAbilityId] = false;
+    locatorCon_.notify_all();
 }
 
 
@@ -170,7 +173,7 @@ void LocationSaLoadCallback::OnLoadSystemAbilitySuccess(
         LBSLOGE(LOCATOR, "LocationSaLoadManager GetInstance return null");
         return;
     }
-    instance->LoadSystemAbilitySuccess();
+    instance->LoadSystemAbilitySuccess(systemAbilityId);
 }
 
 void LocationSaLoadCallback::OnLoadSystemAbilityFail(int32_t systemAbilityId)
@@ -181,7 +184,7 @@ void LocationSaLoadCallback::OnLoadSystemAbilityFail(int32_t systemAbilityId)
         LBSLOGE(LOCATOR, "LocationSaLoadManager GetInstance return null");
         return;
     }
-    instance->LoadSystemAbilityFail();
+    instance->LoadSystemAbilityFail(systemAbilityId);
 }
 }; // namespace Location
 }; // namespace OHOS

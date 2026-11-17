@@ -146,6 +146,9 @@ public:
     void SetSingleLocation(const std::unique_ptr<Location>& location);
 
 private:
+    void HandleLocationInfoEvent(MessageParcel& data);
+    void HandleErrorInfoEvent(MessageParcel& data);
+
     napi_env env_;
     napi_ref handlerCb_;
     napi_ref successHandlerCb_;

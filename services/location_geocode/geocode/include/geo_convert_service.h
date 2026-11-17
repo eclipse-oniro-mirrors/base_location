@@ -141,6 +141,7 @@ private:
     std::mutex mutex_;
     sptr<IRemoteObject> serviceProxy_ = nullptr;
     std::condition_variable connectCondition_;
+    std::mutex connMutex_;
     sptr<AAFwk::IAbilityConnection> conn_;
     sptr<IRemoteObject::DeathRecipient> geoServiceRecipient_ =
         sptr<GeoServiceDeathRecipient>(new (std::nothrow) GeoServiceDeathRecipient());

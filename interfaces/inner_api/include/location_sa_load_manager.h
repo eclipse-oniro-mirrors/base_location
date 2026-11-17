@@ -17,6 +17,7 @@
 #define OHOS_LOCATION_SA_LOAD_MANAGER_H
 
 #include <condition_variable>
+#include <map>
 #include <singleton.h>
 #include "iremote_object.h"
 #include "constant_definition.h"
@@ -36,20 +37,20 @@ public:
     ~LocationSaLoadManager();
     LocationErrCode LoadLocationSa(int32_t systemAbilityId);
     LocationErrCode UnloadLocationSa(int32_t systemAbilityId);
-    void LoadSystemAbilitySuccess();
-    void LoadSystemAbilityFail();
+    void LoadSystemAbilitySuccess(int32_t systemAbilityId);
+    void LoadSystemAbilityFail(int32_t systemAbilityId);
     static bool CheckIfSystemAbilityAvailable(int32_t systemAbilityId);
     static bool InitLocationSa(int32_t systemAbilityId);
     static bool UnInitLocationSa(int32_t systemAbilityId);
     static LocationSaLoadManager* GetInstance();
 
 private:
-    void InitLoadState();
+    void InitLoadState(int32_t systemAbilityId);
     LocationErrCode WaitLoadStateChange(int32_t systemAbilityId);
 
     std::condition_variable locatorCon_;
     std::mutex locatorMutex_;
-    bool state_ = false;
+    std::map<int32_t, bool> loadStateMap_;
 };
 
 class SaLoadWithStatistic {
