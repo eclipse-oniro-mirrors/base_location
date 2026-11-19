@@ -17,6 +17,7 @@
 #define GEO_CONVERT_SERVICE_H
 #ifdef FEATURE_GEOCODE_SUPPORT
 
+#include <atomic>
 #include <mutex>
 #include <singleton.h>
 #include <string>
@@ -131,7 +132,7 @@ private:
     void UnRegisterGeoServiceDeathRecipient();
     void DeleteAgedGeoAddress();
 
-    bool mockEnabled_ = false;
+    std::atomic<bool> mockEnabled_{false};
     bool registerToService_ = false;
     ServiceRunningState state_ = ServiceRunningState::STATE_NOT_START;
     std::vector<std::shared_ptr<GeocodingMockInfo>> mockInfo_;
@@ -141,6 +142,7 @@ private:
     std::mutex mutex_;
     sptr<IRemoteObject> serviceProxy_ = nullptr;
     std::condition_variable connectCondition_;
+    std::mutex connMutex_;
     sptr<AAFwk::IAbilityConnection> conn_;
     sptr<IRemoteObject::DeathRecipient> geoServiceRecipient_ =
         sptr<GeoServiceDeathRecipient>(new (std::nothrow) GeoServiceDeathRecipient());

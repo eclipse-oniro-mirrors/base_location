@@ -67,6 +67,7 @@ GeoConvertService::~GeoConvertService()
         geoConvertHandler_->RemoveTask(UNLOAD_GEOCONVERT_TASK);
     }
 #endif
+    std::unique_lock<std::mutex> connLock(connMutex_);
     conn_ = nullptr;
 }
 
@@ -89,6 +90,7 @@ void GeoConvertService::OnStop()
 {
     state_ = ServiceRunningState::STATE_NOT_START;
     registerToService_ = false;
+    std::unique_lock<std::mutex> connLock(connMutex_);
     if (conn_ != nullptr) {
         AAFwk::AbilityManagerClient::GetInstance()->DisconnectAbility(conn_);
         LBSLOGD(GEO_CONVERT, "GeoConvertService::OnStop and disconnect");
@@ -150,21 +152,27 @@ bool GeoConvertService::ConnectService()
         return false;
     }
     connectionWant.SetElementName(serviceName, abilityName);
-    conn_ = sptr<AAFwk::IAbilityConnection>(new (std::nothrow) AbilityConnection());
-    if (conn_ == nullptr) {
-        LBSLOGE(GEO_CONVERT, "get connection failed!");
-        return false;
+    int32_t ret = ERR_OK;
+    {
+        std::unique_lock<std::mutex> connLock(connMutex_);
+        conn_ = sptr<AAFwk::IAbilityConnection>(new (std::nothrow) AbilityConnection());
+        if (conn_ == nullptr) {
+            LBSLOGE(GEO_CONVERT, "get connection failed!");
+            return false;
+        }
+        SetServiceConnectState(ServiceConnectState::STATE_CONNECTTING);
+        ret = AAFwk::AbilityManagerClient::GetInstance()->ConnectAbility(connectionWant, conn_, -1);
     }
-    SetServiceConnectState(ServiceConnectState::STATE_CONNECTTING);
-    int32_t ret = AAFwk::AbilityManagerClient::GetInstance()->ConnectAbility(connectionWant, conn_, -1);
     if (ret != ERR_OK) {
         LBSLOGE(GEO_CONVERT, "Connect cloud service failed!");
         return false;
     }
-    std::unique_lock<std::mutex> uniqueLock(mutex_);
-    auto waitStatus =
-        connectCondition_.wait_for(uniqueLock,
-        std::chrono::seconds(GEOCONVERT_CONNECT_TIME_OUT), [this]() { return serviceProxy_ != nullptr; });
+    bool waitStatus = false;
+    {
+        std::unique_lock<std::mutex> uniqueLock(mutex_);
+        waitStatus = connectCondition_.wait_for(uniqueLock,
+            std::chrono::seconds(GEOCONVERT_CONNECT_TIME_OUT), [this]() { return serviceProxy_ != nullptr; });
+    }
     if (!waitStatus) {
         LBSLOGE(GEO_CONVERT, "Connect cloudService timeout!");
         SetServiceConnectState(ServiceConnectState::STATE_DISCONNECT);
@@ -383,6 +391,7 @@ void GeoConvertService::UnloadGeoConvertSystemAbility()
 
 void GeoConvertService::DisconnectAbilityConnect()
 {
+    std::unique_lock<std::mutex> connLock(connMutex_);
     if (conn_ != nullptr) {
         UnRegisterGeoServiceDeathRecipient();
         AAFwk::AbilityManagerClient::GetInstance()->DisconnectAbility(conn_);
@@ -429,6 +438,7 @@ bool GeoConvertService::ResetServiceProxy()
 
 void GeoConvertService::RegisterGeoServiceDeathRecipient()
 {
+    std::unique_lock<std::mutex> uniqueLock(mutex_);
     if (serviceProxy_ == nullptr) {
         LBSLOGE(GEO_CONVERT, "%{public}s: geoServiceProxy_ is nullptr", __func__);
         return;

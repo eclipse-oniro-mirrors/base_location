@@ -16,6 +16,8 @@
 #ifndef LOCATOR_CALLBACK_NAPI_H
 #define LOCATOR_CALLBACK_NAPI_H
 
+#include <atomic>
+
 #include "iremote_stub.h"
 #include "napi/native_api.h"
 #include "uv.h"
@@ -146,17 +148,21 @@ public:
     void SetSingleLocation(const std::unique_ptr<Location>& location);
 
 private:
+    void HandleLocationInfoEvent(MessageParcel& data);
+    void HandleErrorInfoEvent(MessageParcel& data);
+
     napi_env env_;
     napi_ref handlerCb_;
     napi_ref successHandlerCb_;
     napi_ref failHandlerCb_;
     napi_ref completeHandlerCb_;
     int fixNumber_;
+    std::mutex reportMutex_;
     std::mutex mutex_;
     CountDownLatch* latch_;
     std::shared_ptr<Location> singleLocation_;
     int locationPriority_;
-    bool inHdArea_;
+    std::atomic<bool> inHdArea_{true};
     int errorType_;
 };
 } // namespace Location

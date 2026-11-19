@@ -18,15 +18,9 @@
 
 namespace OHOS {
 namespace Location {
-static HOOK_MGR* locatorHookMgr_ = nullptr;
-
 HOOK_MGR* HookUtils::GetLocationExtHookMgr()
 {
-    if (locatorHookMgr_ != nullptr) {
-        return locatorHookMgr_;
-    }
-
-    locatorHookMgr_ = HookMgrCreate("locationHookMgr");
+    static HOOK_MGR* locatorHookMgr_ = HookMgrCreate("locationHookMgr");
     return locatorHookMgr_;
 }
 

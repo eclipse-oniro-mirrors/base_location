@@ -641,7 +641,7 @@ HWTEST_F(LocationCommonTest, LocationSaLoadManager002, TestSize.Level1)
     GTEST_LOG_(INFO)
         << "LocationCommonTest, LocationSaLoadManager002, TestSize.Level1";
     LBSLOGI(LOCATOR, "[LocationCommonTest] LocationSaLoadManager002 begin");
-    LocationSaLoadManager::GetInstance()->LoadSystemAbilityFail();
+    LocationSaLoadManager::GetInstance()->LoadSystemAbilityFail(LOCATION_LOCATOR_SA_ID);
 
     auto locationSaLoadCallback = sptr<LocationSaLoadCallback>(new LocationSaLoadCallback());
     ASSERT_TRUE(locationSaLoadCallback != nullptr);
