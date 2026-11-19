@@ -16,6 +16,8 @@
 #ifndef LOCATOR_CALLBACK_NAPI_H
 #define LOCATOR_CALLBACK_NAPI_H
 
+#include <atomic>
+
 #include "iremote_stub.h"
 #include "napi/native_api.h"
 #include "uv.h"
@@ -160,7 +162,7 @@ private:
     CountDownLatch* latch_;
     std::shared_ptr<Location> singleLocation_;
     int locationPriority_;
-    bool inHdArea_;
+    std::atomic<bool> inHdArea_{true};
     int errorType_;
 };
 } // namespace Location

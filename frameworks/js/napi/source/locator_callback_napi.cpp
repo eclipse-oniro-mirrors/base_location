@@ -107,7 +107,6 @@ void LocatorCallbackNapi::HandleLocationInfoEvent(MessageParcel& data)
     std::unique_ptr<Location> location = Location::UnmarshallingMakeUnique(data);
     OnLocationReport(location);
     if (location->GetLocationSourceType() == LocationSourceType::NETWORK_TYPE) {
-        std::unique_lock<std::mutex> guard(mutex_);
         inHdArea_ = false;
     }
     if (NeedSetSingleLocation(location)) {
@@ -125,10 +124,7 @@ void LocatorCallbackNapi::HandleErrorInfoEvent(MessageParcel& data)
     SetErrorType(errorCode);
     LBSLOGI(LOCATOR_STANDARD, "CallbackSutb receive ERROR_EVENT. errorCode:%{public}d", errorCode);
     if (errorCode == ERRCODE_LOCATING_NETWORK_FAIL) {
-        {
-            std::unique_lock<std::mutex> guard(mutex_);
             inHdArea_ = false;
-        }
         if (GetSingleLocation() != nullptr) {
             CountDown();
         }
