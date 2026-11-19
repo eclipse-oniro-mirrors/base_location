@@ -16,6 +16,7 @@
 #ifdef FEATURE_GNSS_SUPPORT
 #include "agnss_ni_manager_test.h"
 
+#include "gnss_common_event_manager.h"
 #include "location_log.h"
 #include "system_ability_definition.h"
 
