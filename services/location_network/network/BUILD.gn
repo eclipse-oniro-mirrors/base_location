@@ -144,11 +144,13 @@ if (location_feature_with_network) {
   }
 } else {
   ohos_shared_library("lbsservice_network") {
+    branch_protector_ret = "pac_ret"
     part_name = "location"
     subsystem_name = "location"
   }
 
   ohos_static_library("lbsservice_network_static") {
+    branch_protector_ret = "pac_ret"
     part_name = "location"
     subsystem_name = "location"
   }

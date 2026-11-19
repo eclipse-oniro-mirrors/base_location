@@ -720,11 +720,11 @@ static bool ParseAndValidateSceneAndFenceType(napi_env env, napi_value object, i
         LBSLOGE(FUSION_FENCE, "fenceType is required");
         return false;
     }
-    constexpr int32_t validFenceTypeMask = static_cast<int32_t>(FusionFenceType::FUSION_FENCE_GNSS) |
-        static_cast<int32_t>(FusionFenceType::FUSION_FENCE_CELLULAR) |
-        static_cast<int32_t>(FusionFenceType::FUSION_FENCE_WIFI) |
-        static_cast<int32_t>(FusionFenceType::FUSION_FENCE_BLUETOOTH);
-    if (fenceType <= 0 || (fenceType & ~validFenceTypeMask) != 0) {
+    constexpr uint32_t validFenceTypeMask = static_cast<uint32_t>(FusionFenceType::FUSION_FENCE_GNSS) |
+        static_cast<uint32_t>(FusionFenceType::FUSION_FENCE_CELLULAR) |
+        static_cast<uint32_t>(FusionFenceType::FUSION_FENCE_WIFI) |
+        static_cast<uint32_t>(FusionFenceType::FUSION_FENCE_BLUETOOTH);
+    if (fenceType <= 0 || (static_cast<uint32_t>(fenceType) & ~validFenceTypeMask) != 0) {
         LBSLOGE(FUSION_FENCE, "invalid fenceType: %{public}d", fenceType);
         return false;
     }
@@ -733,26 +733,33 @@ static bool ParseAndValidateSceneAndFenceType(napi_env env, napi_value object, i
 
 static int32_t ConvertJsTransitionEventsToNative(int32_t jsTransitionEvents)
 {
-    int32_t nativeEvents = 0;
-    if ((jsTransitionEvents & GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_ENTER) != 0) {
+    uint32_t nativeEvents = 0;
+    uint32_t jsEvents = static_cast<uint32_t>(jsTransitionEvents);
+    if ((jsEvents & static_cast<int32_t>(
+            GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_ENTER)) != 0) {
         nativeEvents |= SensorGeofenceTransition::SENSOR_GEOFENCE_TRANSITION_ENTERED;
     }
-    if ((jsTransitionEvents & GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_EXIT) != 0) {
+    if ((jsEvents & static_cast<int32_t>(
+            GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_EXIT)) != 0) {
         nativeEvents |= SensorGeofenceTransition::SENSOR_GEOFENCE_TRANSITION_EXITED;
     }
-    if ((jsTransitionEvents & GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_DWELL) != 0) {
+    if ((jsEvents & static_cast<int32_t>(
+            GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_DWELL)) != 0) {
         nativeEvents |= SensorGeofenceTransition::SENSOR_GEOFENCE_TRANSITION_DWELL;
     }
-    if ((jsTransitionEvents & GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_APPROACHING_GEOFENCE) != 0) {
+    if ((jsEvents & static_cast<int32_t>(
+            GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_APPROACHING_GEOFENCE)) != 0) {
         nativeEvents |= SensorGeofenceTransition::SENSOR_GEOFENCE_TRANSITION_NEAR;
     }
-    if ((jsTransitionEvents & GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_LEAVING_GEOFENCE) != 0) {
+    if ((jsEvents & static_cast<int32_t>(
+            GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_LEAVING_GEOFENCE)) != 0) {
         nativeEvents |= SensorGeofenceTransition::SENSOR_GEOFENCE_TRANSITION_FAR;
     }
-    if ((jsTransitionEvents & GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_NEAR_WANDER) != 0) {
+    if ((jsEvents & static_cast<int32_t>(
+            GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_NEAR_WANDER)) != 0) {
         nativeEvents |= SensorGeofenceTransition::SENSOR_GEOFENCE_TRANSITION_NEAR_WANDER;
     }
-    return nativeEvents;
+    return static_cast<int32_t>(nativeEvents);
 }
 
 static bool ParseTimingFields(napi_env env, napi_value object, std::shared_ptr<FusionFenceRequest>& fusionRequest)
@@ -762,13 +769,13 @@ static bool ParseTimingFields(napi_env env, napi_value object, std::shared_ptr<F
         LBSLOGE(FUSION_FENCE, "monitorTransitionEvents is required");
         return false;
     }
-    constexpr int32_t validTransitionMask =
-        static_cast<int32_t>(GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_ENTER) |
-        static_cast<int32_t>(GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_EXIT) |
-        static_cast<int32_t>(GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_DWELL) |
-        static_cast<int32_t>(GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_APPROACHING_GEOFENCE) |
-        static_cast<int32_t>(GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_LEAVING_GEOFENCE) |
-        static_cast<int32_t>(GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_NEAR_WANDER);
+    constexpr uint32_t validTransitionMask =
+        static_cast<uint32_t>(GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_ENTER) |
+        static_cast<uint32_t>(GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_EXIT) |
+        static_cast<uint32_t>(GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_DWELL) |
+        static_cast<uint32_t>(GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_APPROACHING_GEOFENCE) |
+        static_cast<uint32_t>(GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_LEAVING_GEOFENCE) |
+        static_cast<uint32_t>(GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_NEAR_WANDER);
     if (monitorTransitionEvents <= 0 ||
         (monitorTransitionEvents & validTransitionMask) != monitorTransitionEvents) {
         LBSLOGE(FUSION_FENCE, "invalid monitorTransitionEvents: %{public}d", monitorTransitionEvents);
@@ -802,19 +809,20 @@ static bool ParseTimingFields(napi_env env, napi_value object, std::shared_ptr<F
 static bool ParseFenceArraysByType(napi_env env, napi_value object, int32_t fenceType,
     std::shared_ptr<FusionFenceRequest>& fusionRequest)
 {
-    if ((fenceType & static_cast<int32_t>(FusionFenceType::FUSION_FENCE_GNSS)) != 0) {
+    uint32_t fenceTypeBits = static_cast<uint32_t>(fenceType);
+    if ((fenceTypeBits & static_cast<uint32_t>(FusionFenceType::FUSION_FENCE_GNSS)) != 0) {
         if (!ParseGnssFences(env, object, *fusionRequest)) {
             LBSLOGE(FUSION_FENCE, "ParseGnssFences failed");
             return false;
         }
     }
-    if ((fenceType & static_cast<int32_t>(FusionFenceType::FUSION_FENCE_CELLULAR)) != 0) {
+    if ((fenceTypeBits & static_cast<uint32_t>(FusionFenceType::FUSION_FENCE_CELLULAR)) != 0) {
         if (!ParseCellFences(env, object, *fusionRequest)) {
             LBSLOGE(FUSION_FENCE, "ParseCellFences failed");
             return false;
         }
     }
-    if ((fenceType & static_cast<int32_t>(FusionFenceType::FUSION_FENCE_WIFI)) != 0) {
+    if ((fenceTypeBits & static_cast<uint32_t>(FusionFenceType::FUSION_FENCE_WIFI)) != 0) {
         if (!ParseWifiFences(env, object, *fusionRequest)) {
             LBSLOGE(FUSION_FENCE, "ParseWifiFences failed");
             return false;

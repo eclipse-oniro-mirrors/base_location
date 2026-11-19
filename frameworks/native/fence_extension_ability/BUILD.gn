@@ -124,4 +124,5 @@ ohos_static_library("fence_extension_ability_static") {
     "-fPIC",
     "-Wl,-E",
   ]
+  branch_protector_ret = "pac_ret"
 }
