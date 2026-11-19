@@ -173,11 +173,6 @@ namespace Location {
         auto aGnssNiManager = AGnssNiManager::GetInstance();
         EventFwk::Want want;
         aGnssNiManager->Run();
-        aGnssNiManager->SubscribeSaStatusChangeListerner();
-        aGnssNiManager->RegisterAgnssNiEvent();
-        aGnssNiManager->UnRegisterAgnssNiEvent();
-        aGnssNiManager->RegisterNiResponseEvent();
-        aGnssNiManager->UnRegisterNiResponseEvent();
         aGnssNiManager->CheckWapSuplInit(want);
         aGnssNiManager->CheckSmsSuplInit(want);
         aGnssNiManager->OnCallStateChanged(want);

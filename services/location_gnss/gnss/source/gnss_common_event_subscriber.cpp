@@ -18,6 +18,7 @@
 
 #include "agnss_ni_manager.h"
 #include "location_log.h"
+#include "gnss_ability.h"
 
 namespace OHOS {
 namespace Location {
@@ -44,6 +45,10 @@ void GnssCommonEventSubscriber::OnReceiveEvent(const OHOS::EventFwk::CommonEvent
     } else if (action == AGNSS_NI_REJECT_EVENT) {
         LBSLOGI(GNSS, "[AGNSS NI]:receive user reject event");
         agnssNiManager->SendUserResponse(GNSS_NI_RESPONSE_CMD_REJECT);
+    } else if (action == CommonEventSupport::COMMON_EVENT_PACKAGE_REMOVED) {
+        std::string packageName = data.GetWant().GetStringParam(AppExecFwk::Constants::BUNDLE_NAME);
+        LBSLOGI(GNSS, "[GEOFENCE]:receive COMMON_EVENT_PACKAGE_REMOVED,packageName:%{public}s", packageName.c_str());
+        GnssAbility::GetInstance()->RemoveGnssGeofenceWhenAppUninstall(packageName);
     }
 }
 } // namespace Location

@@ -21,6 +21,7 @@
 #include <fstream>
 
 #include "agnss_ni_manager.h"
+#include "gnss_common_event_manager.h"
 #include "event_runner.h"
 #include "idevmgr_hdi.h"
 #include "ipc_skeleton.h"
@@ -101,6 +102,7 @@ constexpr int NLP_FIX_VALID_TIME = 2;
 const int64_t INVALID_TIME = 0;
 const int TIMEOUT_WATCHDOG = 60; // s
 const int DEFAULT_FENCE_ID = -1;
+const int REMOVE_FENCE_WHEN_APP_UNINSTALL_DELAY_TIME = 1000;
 const int64_t MILL_TO_NANOS = 1000000;
 const std::string GEOFENCE_REQUEST_FILE_PATH = "/data/service/el2/public/location/geofenceRequest.conf";
 static const std::string SYSPARAM_GPS_SUPPORT = "const.location.gps.support";
@@ -138,9 +140,7 @@ GnssAbility::GnssAbility() : SystemAbility(LOCATION_GNSS_SA_ID, true)
 
     fenceId_ = 0;
     auto agnssNiManager = AGnssNiManager::GetInstance();
-    if (agnssNiManager != nullptr) {
-        agnssNiManager->SubscribeSaStatusChangeListerner();
-    }
+    GnssCommonEventManager::GetInstance()->SubscribeSaStatusChangeListner();
     MonitorNetwork();
     PreRestoreGeofenceRequest();
     LBSLOGI(GNSS, "ability constructed.");
@@ -739,7 +739,8 @@ void GnssAbility::RestoreGeofenceRequest()
     int32_t fenceId = 0;
     for (auto iter : requestList) {
         // 是否超期，超期不恢复
-        if (CommonUtils::GetCurrentTimeMilSec() > iter->GetRequestExpirationTimeStamp()) {
+        if (CommonUtils::GetCurrentTimeMilSec() > iter->GetRequestExpirationTimeStamp() ||
+            !BundleMgrHelper::CheckAppInstalled(iter->GetBundleName())) {
             LBSLOGI(GNSS, "geofence request is expiration, not need restore, %{public}s, %{public}d",
                 iter->GetBundleName().c_str(), iter->GetFenceId());
             continue;
@@ -1360,6 +1361,48 @@ bool GnssAbility::RemoveGnssGeofenceByCallbackWhenAppDie(sptr<IRemoteObject> cal
     return true;
 }
 
+void GnssAbility::RemoveGnssGeofenceWhenAppUninstall(std::string packageName)
+{
+    if (packageName.empty()) {
+        return;
+    }
+    std::vector<std::shared_ptr<GeofenceRequest>> requestList;
+    {
+        std::unique_lock<ffrt::mutex> lock(gnssGeofenceRequestListMutex_);
+        for (auto iter = gnssGeofenceRequestList_.begin(); iter != gnssGeofenceRequestList_.end();) {
+            auto gnssGeofenceRequest = *iter;
+            if (gnssGeofenceRequest == nullptr) {
+                iter++;
+                continue;
+            }
+            std::string bundleName = gnssGeofenceRequest->GetBundleName();
+            if (bundleName.compare(packageName) == 0) {
+                requestList.push_back(gnssGeofenceRequest);
+            }
+            iter++;
+        }
+    }
+    const size_t MAX_SYNC_PROCESS = 30; // 同步处理的最大次数
+    size_t i = 0;
+    for (; i < requestList.size() && i < MAX_SYNC_PROCESS; ++i) {
+        if (gnssHandler_ != nullptr) {
+            AppExecFwk::InnerEvent::Pointer event = AppExecFwk::InnerEvent::Get(
+                static_cast<uint32_t>(GnssAbilityInterfaceCode::REMOVE_GEOFENCE), requestList[i]);
+            gnssHandler_->SendEvent(event);
+        }
+    }
+    // 如果还有剩余请求，通过异步消息处理
+    if (i < requestList.size()) {
+        if (gnssHandler_ != nullptr) {
+            std::shared_ptr<std::string> packageNamePtr = std::make_shared<std::string>(packageName);
+            AppExecFwk::InnerEvent::Pointer event = AppExecFwk::InnerEvent::Get(
+                static_cast<uint32_t>(GnssAbilityInterfaceCode::REMOVE_FENCE_WHEN_APP_UNINSTALL), packageNamePtr);
+            gnssHandler_->SendEvent(event, REMOVE_FENCE_WHEN_APP_UNINSTALL_DELAY_TIME);
+        }
+    }
+    LBSLOGI(GNSS, "After RemoveGnssGeofenceWhenAppUninstall size:%{public}zu", gnssGeofenceRequestList_.size());
+}
+
 size_t GnssAbility::GetGnssGeofenceRequestMapSize()
 {
     std::unique_lock<ffrt::mutex> lock(gnssGeofenceRequestListMutex_);
@@ -1551,7 +1594,8 @@ void GnssAbility::ReportGeofenceEvent(int fenceIndex, int event)
         LBSLOGE(GNSS, "request is nullptr");
         return;
     }
-    if (CommonUtils::GetCurrentTimeMilSec() > request->GetRequestExpirationTimeStamp()) {
+    if (CommonUtils::GetCurrentTimeMilSec() > request->GetRequestExpirationTimeStamp() ||
+        !BundleMgrHelper::CheckAppInstalled(request->GetBundleName())) {
         LBSLOGE(GNSS, "request is expiration");
         if (gnssHandler_ != nullptr) {
             AppExecFwk::InnerEvent::Pointer handlerEvent = AppExecFwk::InnerEvent::Get(
@@ -2832,6 +2876,8 @@ void GnssHandler::InitGnssEventProcessMap()
         [this](const AppExecFwk::InnerEvent::Pointer& event) { HandleAddGeofence(event); };
     gnssEventProcessMap_[static_cast<uint32_t>(GnssAbilityInterfaceCode::REMOVE_GEOFENCE)] =
         [this](const AppExecFwk::InnerEvent::Pointer& event) { HandleRemoveGeofence(event); };
+    gnssEventProcessMap_[static_cast<uint32_t>(GnssAbilityInterfaceCode::REMOVE_FENCE_WHEN_APP_UNINSTALL)] =
+        [this](const AppExecFwk::InnerEvent::Pointer& event) { HandleRemoveFenceWhenAppUninstall(event); };
     gnssEventProcessMap_[static_cast<uint32_t>(GnssAbilityInterfaceCode::ADD_FUSION_FENCE)] =
         [this](const AppExecFwk::InnerEvent::Pointer& event) { HandleAddFusionFence(event); };
     gnssEventProcessMap_[static_cast<uint32_t>(GnssAbilityInterfaceCode::REMOVE_FUSION_FENCE)] =
@@ -3016,6 +3062,15 @@ void GnssHandler::HandleRemoveGeofence(const AppExecFwk::InnerEvent::Pointer& ev
             gnssAbility->ReportFailedOperationResult(request,
                 GnssGeofenceOperateType::GNSS_GEOFENCE_OPT_TYPE_DELETE, code);
         }
+    }
+}
+
+void GnssHandler::HandleRemoveFenceWhenAppUninstall(const AppExecFwk::InnerEvent::Pointer& event)
+{
+    auto gnssAbility = GnssAbility::GetInstance();
+    std::shared_ptr<std::string> packageName = event->GetSharedObject<std::string>();
+    if (packageName != nullptr) {
+        gnssAbility->RemoveGnssGeofenceWhenAppUninstall(*packageName);
     }
 }
 

@@ -65,75 +65,9 @@ AGnssNiManager::AGnssNiManager()
 AGnssNiManager::~AGnssNiManager()
 {}
 
-void AGnssNiManager::SubscribeSaStatusChangeListerner()
-{
-    LBSLOGI(GNSS, "AGNSS-NI SubscribeSaStatusChangeListerner");
-    sptr<ISystemAbilityManager> samgrProxy = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
-    if (samgrProxy == nullptr) {
-        LBSLOGE(GNSS, "failed to get samgrProxy");
-        return;
-    }
-    statusChangeListener_ = new SystemAbilityStatusChangeListener();
-    if (statusChangeListener_ == nullptr) {
-        LBSLOGE(GNSS, "statusChangeListener_ is nullptr!");
-        return;
-    }
-    int32_t ret = samgrProxy->SubscribeSystemAbility(COMMON_EVENT_SERVICE_ID, statusChangeListener_);
-    if (ret != ERR_OK) {
-        LBSLOGE(GNSS, "subscribe systemAbilityId: call manager service failed!");
-        return;
-    }
-}
-
-void AGnssNiManager::RegisterAgnssNiEvent()
-{
-    MatchingSkills matchingSkills;
-    matchingSkills.AddEvent(CommonEventSupport::COMMON_EVENT_SMS_WAPPUSH_RECEIVE_COMPLETED);
-    matchingSkills.AddEvent(CommonEventSupport::COMMON_EVENT_SMS_RECEIVE_COMPLETED);
-    matchingSkills.AddEvent(CommonEventSupport::COMMON_EVENT_CALL_STATE_CHANGED);
-    CommonEventSubscribeInfo subscriberInfo(matchingSkills);
-    subscriber_ = std::make_shared<GnssCommonEventSubscriber>(subscriberInfo);
-
-    uint32_t count = 0;
-    bool result = false;
-    while (!result && count <= MAX_RETRY_TIMES) {
-        result = CommonEventManager::SubscribeCommonEvent(subscriber_);
-        count++;
-    }
-    if (count > MAX_RETRY_TIMES || !result) {
-        LBSLOGE(GNSS, "Failed to subscriber gnss event");
-    } else {
-        LBSLOGI(GNSS, "success to subscriber gnss event");
-    }
-}
-
-void AGnssNiManager::RegisterNiResponseEvent()
-{
-    MatchingSkills matchingSkills;
-    matchingSkills.AddEvent(AGNSS_NI_ACCEPT_EVENT);
-    matchingSkills.AddEvent(AGNSS_NI_REJECT_EVENT);
-    CommonEventSubscribeInfo subscriberInfo(matchingSkills);
-    subscriberInfo.SetPermission("ohos.permission.PUBLISH_LOCATION_EVENT");
-    niResponseSubscriber_ = std::make_shared<GnssCommonEventSubscriber>(subscriberInfo);
-
-    uint32_t count = 0;
-    bool result = false;
-    while (!result && count <= MAX_RETRY_TIMES) {
-        result = CommonEventManager::SubscribeCommonEvent(niResponseSubscriber_);
-        count++;
-    }
-    if (count > MAX_RETRY_TIMES || !result) {
-        LBSLOGE(GNSS, "Failed to subscriber ni response event");
-    } else {
-        LBSLOGI(GNSS, "success to subscriber ni response event");
-    }
-}
-
 void AGnssNiManager::Run()
 {
     LBSLOGI(GNSS, "AGNSS-NI: Run");
-    RegisterAgnssNiEvent();
-    RegisterNiResponseEvent();
     sptr<IGnssInterface> gnssInterface = HDI::Location::Gnss::V2_0::IGnssInterface::Get();
     if (gnssInterface == nullptr) {
         auto gnssAbility = GnssAbility::GetInstance();
@@ -142,28 +76,6 @@ void AGnssNiManager::Run()
             gnssInterface = HDI::Location::Gnss::V2_0::IGnssInterface::Get();
         }
     }
-}
-
-void AGnssNiManager::UnRegisterAgnssNiEvent()
-{
-    if (subscriber_ == nullptr) {
-        LBSLOGE(GNSS, "UnRegisterAgnssNiEvent subscriber_ is null");
-        return;
-    }
-    bool result = CommonEventManager::UnSubscribeCommonEvent(subscriber_);
-    subscriber_ = nullptr;
-    LBSLOGI(GNSS, "unSubscriber gnss event, result = %{public}d", result);
-}
-
-void AGnssNiManager::UnRegisterNiResponseEvent()
-{
-    if (niResponseSubscriber_ == nullptr) {
-        LBSLOGE(GNSS, "UnRegisterAgnssNiEvent subscriber_ is null");
-        return;
-    }
-    bool result = CommonEventManager::UnSubscribeCommonEvent(niResponseSubscriber_);
-    niResponseSubscriber_ = nullptr;
-    LBSLOGI(GNSS, "unSubscriber ni response event, result = %{public}d", result);
 }
 
 void AGnssNiManager::AgnssNiSuplInit()
@@ -437,32 +349,6 @@ void AGnssNiManager::HandleNiNotification(const GnssNiNotificationRequest &notif
     if (!needNotify || privacyOverride) {
         SendUserResponse(GNSS_NI_RESPONSE_CMD_ACCEPT);
     }
-}
-
-void SystemAbilityStatusChangeListener::OnAddSystemAbility(int32_t systemAbilityId, const std::string &deviceId)
-{
-    LBSLOGI(GNSS, "AGNSS-NI systemAbilityId:%{public}d", systemAbilityId);
-    if (systemAbilityId != COMMON_EVENT_SERVICE_ID) {
-        LBSLOGE(GNSS, "systemAbilityId is not COMMON_EVENT_SERVICE_ID");
-        return;
-    }
-    auto agnssNiManager = AGnssNiManager::GetInstance();
-    agnssNiManager->Run();
-
-    return;
-}
-
-void SystemAbilityStatusChangeListener::OnRemoveSystemAbility(int32_t systemAbilityId, const std::string &deviceId)
-{
-    LBSLOGI(GNSS, "AGNSS-NI systemAbilityId:%{public}d", systemAbilityId);
-    if (systemAbilityId != COMMON_EVENT_SERVICE_ID) {
-        LBSLOGE(GNSS, "systemAbilityId is not COMMON_EVENT_SERVICE_ID");
-        return;
-    }
-    auto agnssNiManager = AGnssNiManager::GetInstance();
-    agnssNiManager->UnRegisterAgnssNiEvent();
-    agnssNiManager->UnRegisterNiResponseEvent();
-    return;
 }
 
 #ifdef NET_MANAGER_ENABLE

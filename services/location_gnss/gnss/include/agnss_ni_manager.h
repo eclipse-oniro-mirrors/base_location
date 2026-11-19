@@ -64,12 +64,6 @@ using HDI::Location::Gnss::V2_0::GNSS_NI_ENCODING_FORMAT_SUPL_GSM_DEFAULT;
 using HDI::Location::Gnss::V2_0::GNSS_NI_ENCODING_FORMAT_SUPL_UCS2;
 using HDI::Location::Gnss::V2_0::GNSS_NI_ENCODING_FORMAT_SUPL_UTF8;
 
-class SystemAbilityStatusChangeListener : public SystemAbilityStatusChangeStub {
-public:
-    void OnAddSystemAbility(int32_t systemAbilityId, const std::string& deviceId) override;
-    void OnRemoveSystemAbility(int32_t systemAbilityId, const std::string& deviceId) override;
-};
-
 #ifdef NET_MANAGER_ENABLE
 class AGnssNiNetworkCallbackEs : public NetManagerStandard::NetConnCallbackStub {
 public:
@@ -95,11 +89,6 @@ public:
     AGnssNiManager();
     ~AGnssNiManager();
     void Run();
-    void SubscribeSaStatusChangeListerner();
-    void RegisterAgnssNiEvent();
-    void UnRegisterAgnssNiEvent();
-    void RegisterNiResponseEvent();
-    void UnRegisterNiResponseEvent();
     void CheckWapSuplInit(const EventFwk::Want &want);
     void CheckSmsSuplInit(const EventFwk::Want &want);
     void OnCallStateChanged(const EventFwk::Want &want);
@@ -118,9 +107,6 @@ private:
     bool isInEmergencyCall_ = false;
     std::atomic<short> niNotificationId_;
     int64_t emergencyCallEndTime_ = 0;
-    std::shared_ptr<GnssCommonEventSubscriber> subscriber_ = nullptr;
-    std::shared_ptr<GnssCommonEventSubscriber> niResponseSubscriber_ = nullptr;
-    sptr<SystemAbilityStatusChangeListener> statusChangeListener_ = nullptr;
     std::mutex callStateMutex_;
 };
 } // namespace Location

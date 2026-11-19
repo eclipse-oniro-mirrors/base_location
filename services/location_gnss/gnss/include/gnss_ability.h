@@ -108,6 +108,7 @@ enum class GnssAbilityInterfaceCode {
     ADD_FUSION_FENCE = 0x010B,
     REMOVE_FUSION_FENCE = 0x010C,
     IS_FUSION_FENCE_SUPPORTED = 0x010D,
+    REMOVE_FENCE_WHEN_APP_UNINSTALL = 0x010E,
 };
 
 enum GnssBatchingWorkStatus {
@@ -156,6 +157,7 @@ private:
     void HandleAddFusionFence(const AppExecFwk::InnerEvent::Pointer& event);
     void HandleRemoveFusionFence(const AppExecFwk::InnerEvent::Pointer& event);
     void HandleIsFusionFenceSupported(const AppExecFwk::InnerEvent::Pointer& event);
+    void HandleRemoveFenceWhenAppUninstall(const AppExecFwk::InnerEvent::Pointer& event);
     void HandleSendNetworkLocation(const AppExecFwk::InnerEvent::Pointer& event);
     void HandleRestoreGeofenceRequest(const AppExecFwk::InnerEvent::Pointer& event);
     void HandleConnectHdi(const AppExecFwk::InnerEvent::Pointer& event);
@@ -261,6 +263,7 @@ public:
     void ReportGeofenceOperationResult(int fenceId, int type, int result);
 #endif
     bool RemoveGnssGeofenceByCallbackWhenAppDie(sptr<IRemoteObject> callbackObj);
+    void RemoveGnssGeofenceWhenAppUninstall(std::string packageName);
     LocationErrCode QuerySupportCoordinateSystemType(
         std::vector<CoordinateSystemType>& coordinateSystemTypes) override;
     LocationErrCode SendNetworkLocation(const std::unique_ptr<Location>& location) override;

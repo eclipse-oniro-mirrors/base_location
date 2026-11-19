@@ -16,6 +16,7 @@
 #ifdef FEATURE_GNSS_SUPPORT
 #include "agnss_ni_manager_test.h"
 
+#include "gnss_common_event_manager.h"
 #include "location_log.h"
 #include "system_ability_definition.h"
 
@@ -54,53 +55,53 @@ HWTEST_F(AGnssNiManagerTest, AGnssNiManagerSubscribeSaStatusChangeListerner001, 
     GTEST_LOG_(INFO)
         << "AGnssNiManagerTest, AGnssNiManagerSubscribeSaStatusChangeListerner001, TestSize.Level0";
     LBSLOGI(GNSS, "[AGnssNiManagerTest] AGnssNiManagerSubscribeSaStatusChangeListerner001 begin");
-    auto agnssNiManager = AGnssNiManager::GetInstance();
-    EXPECT_NE(nullptr, agnssNiManager);
-    agnssNiManager->SubscribeSaStatusChangeListerner();
+    auto gnssCommonEventManager = GnssCommonEventManager::GetInstance();
+    EXPECT_NE(nullptr, gnssCommonEventManager);
+    gnssCommonEventManager->SubscribeSaStatusChangeListner();
     LBSLOGI(GNSS, "[AGnssNiManagerTest] AGnssNiManagerSubscribeSaStatusChangeListerner001 end");
 }
-
+ 
 HWTEST_F(AGnssNiManagerTest, AGnssNiManagerRegisterAgnssNiEvent001, TestSize.Level0)
 {
     GTEST_LOG_(INFO)
         << "AGnssNiManagerTest, AGnssNiManagerRegisterAgnssNiEvent001, TestSize.Level0";
     LBSLOGI(GNSS, "[AGnssNiManagerTest] AGnssNiManagerRegisterAgnssNiEvent001 begin");
-    auto agnssNiManager = AGnssNiManager::GetInstance();
-    EXPECT_NE(nullptr, agnssNiManager);
-    agnssNiManager->RegisterAgnssNiEvent();
+    auto gnssCommonEventManager = GnssCommonEventManager::GetInstance();
+    EXPECT_NE(nullptr, gnssCommonEventManager);
+    gnssCommonEventManager->RegisterAgnssNiEvent();
     LBSLOGI(GNSS, "[AGnssNiManagerTest] AGnssNiManagerRegisterAgnssNiEvent001 end");
 }
-
+ 
 HWTEST_F(AGnssNiManagerTest, AGnssNiManagerUnRegisterAgnssNiEvent001, TestSize.Level0)
 {
     GTEST_LOG_(INFO)
         << "AGnssNiManagerTest, AGnssNiManagerUnRegisterAgnssNiEvent001, TestSize.Level0";
     LBSLOGI(GNSS, "[AGnssNiManagerTest] AGnssNiManagerUnRegisterAgnssNiEvent001 begin");
-    auto agnssNiManager = AGnssNiManager::GetInstance();
-    EXPECT_NE(nullptr, agnssNiManager);
-    agnssNiManager->UnRegisterAgnssNiEvent();
+    auto gnssCommonEventManager = GnssCommonEventManager::GetInstance();
+    EXPECT_NE(nullptr, gnssCommonEventManager);
+    gnssCommonEventManager->UnRegisterAgnssNiEvent();
     LBSLOGI(GNSS, "[AGnssNiManagerTest] AGnssNiManagerUnRegisterAgnssNiEvent001 end");
 }
-
+ 
 HWTEST_F(AGnssNiManagerTest, AGnssNiManagerRegisterNiResponseEvent001, TestSize.Level0)
 {
     GTEST_LOG_(INFO)
         << "AGnssNiManagerTest, AGnssNiManagerRegisterNiResponseEvent001, TestSize.Level0";
     LBSLOGI(GNSS, "[AGnssNiManagerTest] AGnssNiManagerRegisterNiResponseEvent001 begin");
-    auto agnssNiManager = AGnssNiManager::GetInstance();
-    EXPECT_NE(nullptr, agnssNiManager);
-    agnssNiManager->RegisterNiResponseEvent();
+    auto gnssCommonEventManager = GnssCommonEventManager::GetInstance();
+    EXPECT_NE(nullptr, gnssCommonEventManager);
+    gnssCommonEventManager->RegisterNiResponseEvent();
     LBSLOGI(GNSS, "[AGnssNiManagerTest] AGnssNiManagerRegisterNiResponseEvent001 end");
 }
-
+ 
 HWTEST_F(AGnssNiManagerTest, AGnssNiManagerUnRegisterNiResponseEvent001, TestSize.Level0)
 {
     GTEST_LOG_(INFO)
         << "AGnssNiManagerTest, AGnssNiManagerUnRegisterNiResponseEvent001, TestSize.Level0";
     LBSLOGI(GNSS, "[AGnssNiManagerTest] AGnssNiManagerUnRegisterNiResponseEvent001 begin");
-    auto agnssNiManager = AGnssNiManager::GetInstance();
-    EXPECT_NE(nullptr, agnssNiManager);
-    agnssNiManager->UnRegisterNiResponseEvent();
+    auto gnssCommonEventManager = GnssCommonEventManager::GetInstance();
+    EXPECT_NE(nullptr, gnssCommonEventManager);
+    gnssCommonEventManager->UnRegisterNiResponseEvent();
     LBSLOGI(GNSS, "[AGnssNiManagerTest] AGnssNiManagerUnRegisterNiResponseEvent001 end");
 }
 
