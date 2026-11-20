@@ -199,7 +199,11 @@ void FusionFenceAbility::RemoveFenceCount(std::shared_ptr<FusionFenceRequest>& r
                 it->second = 0;
             }
         }
-        totalGnssFenceCount_ -= gnssCount;
+        if (totalGnssFenceCount_ >= gnssCount) {
+            totalGnssFenceCount_ -= gnssCount;
+        } else {
+            totalGnssFenceCount_ = 0;
+        }
     }
 }
 
