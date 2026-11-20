@@ -735,29 +735,29 @@ static int32_t ConvertJsTransitionEventsToNative(int32_t jsTransitionEvents)
 {
     uint32_t nativeEvents = 0;
     uint32_t jsEvents = static_cast<uint32_t>(jsTransitionEvents);
-    if ((jsEvents & static_cast<int32_t>(
+    if ((jsEvents & static_cast<uint32_t>(
             GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_ENTER)) != 0) {
-        nativeEvents |= SensorGeofenceTransition::SENSOR_GEOFENCE_TRANSITION_ENTERED;
+        nativeEvents |= static_cast<uint32_t>(SensorGeofenceTransition::SENSOR_GEOFENCE_TRANSITION_ENTERED);
     }
-    if ((jsEvents & static_cast<int32_t>(
+    if ((jsEvents & static_cast<uint32_t>(
             GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_EXIT)) != 0) {
-        nativeEvents |= SensorGeofenceTransition::SENSOR_GEOFENCE_TRANSITION_EXITED;
+        nativeEvents |= static_cast<uint32_t>(SensorGeofenceTransition::SENSOR_GEOFENCE_TRANSITION_EXITED);
     }
-    if ((jsEvents & static_cast<int32_t>(
+    if ((jsEvents & static_cast<uint32_t>(
             GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_DWELL)) != 0) {
-        nativeEvents |= SensorGeofenceTransition::SENSOR_GEOFENCE_TRANSITION_DWELL;
+        nativeEvents |= static_cast<uint32_t>(SensorGeofenceTransition::SENSOR_GEOFENCE_TRANSITION_DWELL);
     }
-    if ((jsEvents & static_cast<int32_t>(
+    if ((jsEvents & static_cast<uint32_t>(
             GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_APPROACHING_GEOFENCE)) != 0) {
-        nativeEvents |= SensorGeofenceTransition::SENSOR_GEOFENCE_TRANSITION_NEAR;
+        nativeEvents |= static_cast<uint32_t>(SensorGeofenceTransition::SENSOR_GEOFENCE_TRANSITION_NEAR);
     }
-    if ((jsEvents & static_cast<int32_t>(
+    if ((jsEvents & static_cast<uint32_t>(
             GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_LEAVING_GEOFENCE)) != 0) {
-        nativeEvents |= SensorGeofenceTransition::SENSOR_GEOFENCE_TRANSITION_FAR;
+        nativeEvents |= static_cast<uint32_t>(SensorGeofenceTransition::SENSOR_GEOFENCE_TRANSITION_FAR);
     }
-    if ((jsEvents & static_cast<int32_t>(
+    if ((jsEvents & static_cast<uint32_t>(
             GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_NEAR_WANDER)) != 0) {
-        nativeEvents |= SensorGeofenceTransition::SENSOR_GEOFENCE_TRANSITION_NEAR_WANDER;
+        nativeEvents |= static_cast<uint32_t>(SensorGeofenceTransition::SENSOR_GEOFENCE_TRANSITION_NEAR_WANDER);
     }
     return static_cast<int32_t>(nativeEvents);
 }
@@ -777,7 +777,8 @@ static bool ParseTimingFields(napi_env env, napi_value object, std::shared_ptr<F
         static_cast<uint32_t>(GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_LEAVING_GEOFENCE) |
         static_cast<uint32_t>(GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_NEAR_WANDER);
     if (monitorTransitionEvents <= 0 ||
-        (monitorTransitionEvents & validTransitionMask) != monitorTransitionEvents) {
+        (static_cast<uint32_t>(monitorTransitionEvents) & validTransitionMask) !=
+            static_cast<uint32_t>(monitorTransitionEvents)) {
         LBSLOGE(FUSION_FENCE, "invalid monitorTransitionEvents: %{public}d", monitorTransitionEvents);
         return false;
     }
