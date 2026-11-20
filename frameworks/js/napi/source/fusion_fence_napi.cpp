@@ -778,7 +778,7 @@ static bool ParseTimingFields(napi_env env, napi_value object, std::shared_ptr<F
         static_cast<uint32_t>(GeofenceTransitionEvent::GEOFENCE_TRANSITION_EVENT_NEAR_WANDER);
     if (monitorTransitionEvents <= 0 ||
         (static_cast<uint32_t>(monitorTransitionEvents) & validTransitionMask) !=
-            static_cast<uint32_t>(monitorTransitionEvents)) {
+        static_cast<uint32_t>(monitorTransitionEvents)) {
         LBSLOGE(FUSION_FENCE, "invalid monitorTransitionEvents: %{public}d", monitorTransitionEvents);
         return false;
     }
