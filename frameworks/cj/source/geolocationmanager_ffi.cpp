@@ -16,12 +16,16 @@
 #include "geolocationmanager_ffi.h"
 #include "geolocationmanager_impl.h"
 
+#include "common_utils.h"
+
 namespace OHOS {
 namespace GeoLocationManager {
 extern "C" {
 CJLocation FfiOHOSGeoLocationManagerGetLastLocation(int32_t* errCode)
 {
-    return GetLastLocation(*errCode);
+    CJLocation location = GetLastLocation(*errCode);
+    *errCode = Location::CommonUtils::ConvertErrorCode(*errCode);
+    return location;
 }
 
 bool FfiOHOSGeoLocationManagerIsLocationEnabled(int32_t* errCode)
@@ -195,6 +199,46 @@ int32_t FfiGeoLocationManagerOffCountryCodeChangeAll()
 CArrI32 FfiGeoLocationManagerGetGeofenceSupportedCoordTypes(int32_t* errCode)
 {
     return GetGeofenceSupportedCoordTypes(*errCode);
+}
+
+FFI_EXPORT void FfiOHOSGeoLocationManagerFreeGeofenceSupportedCoordTypes(CArrI32 arr)
+{
+    FreeGeofenceSupportedCoordTypes(arr);
+}
+
+FFI_EXPORT void FfiOHOSGeoLocationManagerFreeCJLocation(CJLocation location)
+{
+    FreeCJLocation(location);
+}
+
+FFI_EXPORT void FfiOHOSGeoLocationManagerFreeCJLocationArr(CJLocationArr locations)
+{
+    FreeCJLocationArr(locations);
+}
+
+FFI_EXPORT void FfiOHOSGeoLocationManagerFreeCJCountryCode(CJCountryCode countryCode)
+{
+    FreeCJCountryCode(countryCode);
+}
+
+FFI_EXPORT void FfiGeoLocationManagerFreeCArrI32(CArrI32 arr)
+{
+    FreeCArrI32(arr);
+}
+
+FFI_EXPORT void FfiGeoLocationManagerFreeCArrF64(CArrF64 arr)
+{
+    FreeCArrF64(arr);
+}
+
+FFI_EXPORT void FfiGeoLocationManagerFreeCJSatelliteStatusInfo(CJSatelliteStatusInfo info)
+{
+    FreeCJSatelliteStatusInfo(info);
+}
+
+FFI_EXPORT void FfiOHOSGeoLocationManagerFreeCJGeoAddressArr(CJGeoAddressArr geoAddressArr)
+{
+    FreeCJGeoAddressArr(geoAddressArr);
 }
 }
 }

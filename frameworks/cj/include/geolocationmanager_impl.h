@@ -98,6 +98,22 @@ int32_t OffCountryCodeChange(int64_t callbackId);
 int32_t OffCountryCodeChangeAll();
 
 CArrI32 GetGeofenceSupportedCoordTypes(int32_t& errCode);
+
+void FreeCJGeoAddressArr(CJGeoAddressArr geoAddressArr);
+
+void FreeCJLocation(CJLocation location);
+
+void FreeCJLocationArr(CJLocationArr locations);
+
+void FreeCJCountryCode(CJCountryCode countryCode);
+
+void FreeCArrI32(CArrI32 arr);
+
+void FreeGeofenceSupportedCoordTypes(CArrI32 arr);
+
+void FreeCArrF64(CArrF64 arr);
+
+void FreeCJSatelliteStatusInfo(CJSatelliteStatusInfo info);
 }
 }
 

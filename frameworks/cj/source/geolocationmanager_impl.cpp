@@ -864,5 +864,100 @@ CArrI32 GetGeofenceSupportedCoordTypes(int32_t& errCode)
     res.size = static_cast<int64_t>(coordinateSystemTypes.size());
     return res;
 }
+
+void FreeCJLocation(CJLocation location)
+{
+    if (location.additions != nullptr) {
+        for (int64_t i = 0; i < location.additionSize; i++) {
+            free(location.additions[i]);
+        }
+        free(location.additions);
+    }
+    if (location.additionsMap.keys != nullptr) {
+        for (int64_t i = 0; i < location.additionSize; i++) {
+            free(location.additionsMap.keys[i]);
+        }
+        free(location.additionsMap.keys);
+    }
+    if (location.additionsMap.values != nullptr) {
+        for (int64_t i = 0; i < location.additionSize; i++) {
+            free(location.additionsMap.values[i]);
+        }
+        free(location.additionsMap.values);
+    }
+}
+
+void FreeCJLocationArr(CJLocationArr locations)
+{
+    if (locations.head == nullptr) {
+        return;
+    }
+    for (int64_t i = 0; i < locations.size; i++) {
+        FreeCJLocation(locations.head[i]);
+    }
+    free(locations.head);
+}
+
+void FreeCJCountryCode(CJCountryCode countryCode)
+{
+    free(countryCode.country);
+}
+
+void FreeCArrI32(CArrI32 arr)
+{
+    free(arr.head);
+}
+
+void FreeGeofenceSupportedCoordTypes(CArrI32 arr)
+{
+    FreeCArrI32(arr);
+}
+
+void FreeCArrF64(CArrF64 arr)
+{
+    free(arr.head);
+}
+
+void FreeCJSatelliteStatusInfo(CJSatelliteStatusInfo info)
+{
+    FreeCArrI32(info.satelliteIds);
+    FreeCArrF64(info.carrierToNoiseDensitys);
+    FreeCArrF64(info.altitudes);
+    FreeCArrF64(info.azimuths);
+    FreeCArrF64(info.carrierFrequencies);
+    FreeCArrI32(info.constellationTypes);
+    FreeCArrI32(info.additionalInfoList);
+}
+
+void FreeCJGeoAddressArr(CJGeoAddressArr geoAddressArr)
+{
+    if (geoAddressArr.head == nullptr) {
+        return;
+    }
+    for (int64_t i = 0; i < geoAddressArr.size; i++) {
+        CJGeoAddress& geoAddress = geoAddressArr.head[i];
+        free(geoAddress.locale);
+        free(geoAddress.placeName);
+        free(geoAddress.countryCode);
+        free(geoAddress.countryName);
+        free(geoAddress.administrativeArea);
+        free(geoAddress.subAdministrativeArea);
+        free(geoAddress.locality);
+        free(geoAddress.subLocality);
+        free(geoAddress.roadName);
+        free(geoAddress.subRoadName);
+        free(geoAddress.premises);
+        free(geoAddress.postalCode);
+        free(geoAddress.phoneNumber);
+        free(geoAddress.addressUrl);
+        if (geoAddress.descriptions != nullptr) {
+            for (int32_t j = 0; j < geoAddress.descriptionsSize; j++) {
+                free(geoAddress.descriptions[j]);
+            }
+            free(geoAddress.descriptions);
+        }
+    }
+    free(geoAddressArr.head);
+}
 }
 }
