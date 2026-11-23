@@ -40,6 +40,7 @@ public:
     explicit FusionFenceAsyncContext(
         napi_env env, napi_async_work work = nullptr, napi_deferred deferred = nullptr)
         : AsyncContext(env, work, deferred), beginTime(0),
+        transition_ { "", static_cast<FusionFenceScene>(0), GeofenceTransitionEvent::GEOFENCE_TRANSITION_INIT },
         operateType_(GnssGeofenceOperateType::GNSS_GEOFENCE_OPT_TYPE_ADD), errorCode_(ERRCODE_SUCCESS) {}
  
     FusionFenceAsyncContext() = delete;

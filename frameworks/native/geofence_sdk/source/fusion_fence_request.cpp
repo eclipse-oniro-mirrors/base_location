@@ -259,6 +259,7 @@ FusionFenceTransition* FusionFenceTransition::Unmarshalling(Parcel& parcel)
 
 FusionFenceRequest::FusionFenceRequest()
 {
+    scene_ = static_cast<FusionFenceScene>(0);
     fenceType_ = 0;
     poiLocation_ = {0.0, 0.0};
     monitorTransitionEvents_ = 0;

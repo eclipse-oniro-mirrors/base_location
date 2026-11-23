@@ -142,11 +142,13 @@ if (location_feature_with_geocode) {
   }
 } else {
   ohos_shared_library("lbsservice_geocode") {
+    branch_protector_ret = "pac_ret"
     part_name = "location"
     subsystem_name = "location"
   }
 
   ohos_static_library("lbsservice_geocode_static") {
+    branch_protector_ret = "pac_ret"
     part_name = "location"
     subsystem_name = "location"
   }

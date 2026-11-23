@@ -149,7 +149,7 @@ LocationErrCode FusionFenceAbility::CheckFenceLimit(std::shared_ptr<FusionFenceR
     int32_t fenceType = request->GetFenceType();
     size_t gnssFenceCount = request->GetGnssFences().size();
     std::unique_lock<ffrt::mutex> lock(fusionFenceMutex_);
-    if (fenceType & FUSION_FENCE_GNSS) {
+    if ((static_cast<uint32_t>(fenceType) & static_cast<uint32_t>(FusionFenceType::FUSION_FENCE_GNSS))) {
         size_t totalGnssCount = totalGnssFenceCount_;
 #ifdef FEATURE_GNSS_SUPPORT
         totalGnssCount += GnssAbility::GetInstance()->GetGnssGeofenceRequestMapSize();
@@ -159,9 +159,10 @@ LocationErrCode FusionFenceAbility::CheckFenceLimit(std::shared_ptr<FusionFenceR
             return ERRCODE_GEOFENCE_EXCEED_MAXIMUM;
         }
         auto it = gnssFenceCountMap_.find(bundleName);
-        int appGnssCount = (it != gnssFenceCountMap_.end()) ? it->second : 0;
+        size_t appGnssCount = (it != gnssFenceCountMap_.end()) ? it->second : 0;
 #ifdef FEATURE_GNSS_SUPPORT
-        appGnssCount += GnssAbility::GetInstance()->GetGnssGeofenceCountForOneAppOnly(bundleName);
+        appGnssCount += static_cast<size_t>(
+            GnssAbility::GetInstance()->GetGnssGeofenceCountForOneAppOnly(bundleName));
 #endif
         if (appGnssCount + gnssFenceCount > MAX_GNSS_GEOFENCE_REQUEST_NUM_FOR_ONE_APP) {
             LBSLOGE(FUSION_FENCE, "Exceeded the limit of the gnss fence request for one app");
@@ -176,7 +177,8 @@ void FusionFenceAbility::AddFenceCount(std::shared_ptr<FusionFenceRequest>& requ
     std::string bundleName = request->GetBundleName();
     int32_t fenceType = request->GetFenceType();
     size_t gnssCount = request->GetGnssFences().size();
-    if (fenceType & FUSION_FENCE_GNSS) {
+    if ((static_cast<uint32_t>(fenceType) & static_cast<uint32_t>(
+            FusionFenceType::FUSION_FENCE_GNSS)) != 0) {
         gnssFenceCountMap_[bundleName] += gnssCount;
         totalGnssFenceCount_ += gnssCount;
     }
@@ -187,7 +189,8 @@ void FusionFenceAbility::RemoveFenceCount(std::shared_ptr<FusionFenceRequest>& r
     std::string bundleName = request->GetBundleName();
     int32_t fenceType = request->GetFenceType();
     size_t gnssCount = request->GetGnssFences().size();
-    if (fenceType & FUSION_FENCE_GNSS) {
+    if ((static_cast<uint32_t>(fenceType) & static_cast<uint32_t>(
+            FusionFenceType::FUSION_FENCE_GNSS)) != 0) {
         auto it = gnssFenceCountMap_.find(bundleName);
         if (it != gnssFenceCountMap_.end()) {
             if (it->second >= gnssCount) {
@@ -196,7 +199,11 @@ void FusionFenceAbility::RemoveFenceCount(std::shared_ptr<FusionFenceRequest>& r
                 it->second = 0;
             }
         }
-        totalGnssFenceCount_ -= gnssCount;
+        if (totalGnssFenceCount_ >= gnssCount) {
+            totalGnssFenceCount_ -= gnssCount;
+        } else {
+            totalGnssFenceCount_ = 0;
+        }
     }
 }
 
@@ -251,7 +258,7 @@ int FusionFenceAbility::GetGnssFenceCountForOneApp(const std::string& bundleName
 {
     std::unique_lock<ffrt::mutex> lock(fusionFenceMutex_);
     auto it = gnssFenceCountMap_.find(bundleName);
-    return (it != gnssFenceCountMap_.end()) ? it->second : 0;
+    return (it != gnssFenceCountMap_.end()) ? static_cast<int>(it->second) : 0;
 }
 
 bool FusionFenceAbility::IsFusionFenceSupported()

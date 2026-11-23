@@ -77,8 +77,8 @@ private:
     ffrt::mutex fusionFenceMutex_;
     sptr<FusionFenceEventCallback> fusionFenceEventCallback_;
     std::shared_ptr<FusionFenceHandler> fusionFenceHandler_;
-    std::map<std::string, int> gnssFenceCountMap_;
-    int totalGnssFenceCount_;
+    std::map<std::string, size_t> gnssFenceCountMap_;
+    size_t totalGnssFenceCount_;
 };
 
 class FusionFenceHandler : public AppExecFwk::EventHandler {
